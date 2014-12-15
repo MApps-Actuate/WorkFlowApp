@@ -1,0 +1,87 @@
+<html>
+<head>
+<script src="http://192.168.119.134:8700/iportal/jsapi" type="text/javascript"></script>
+<script>
+
+	var url = "http://192.168.119.134:8700/iportal";
+	actuate.load("reportexplorer");
+	actuate.load("dialog");
+	var reqOpts = new actuate.RequestOptions();
+	reqOpts.setRepositoryType( "Enterprise" );
+	reqOpts.setVolumeProfile("Default Volume");
+	actuate.initialize(url, reqOpts, null, null, afterInit); 
+
+	var selectedFile = "";
+
+function afterInit() {
+	explorer = new actuate.ReportExplorer("fileViewer");
+    explorer.registerEventHandler( actuate.reportexplorer.EventConstants.ON_SELECTION_CHANGED, selectionChanged );
+	var resultDef = "Name|FileType|Version";
+	explorer.setFolderName("/");
+	explorer.setResultDef(resultDef.split("|"));
+
+	var fc =new actuate.reportexplorer.FileCondition();
+	fc.setField( "FileType" );
+	fc.setMatch( "Directory, rptdesign, rptdocument, html, pdf, dashboard, gadget, docx, xlsx, pptx" );
+	var arrFc= new Array();	
+	arrFc.push(fc);
+	var fs = new actuate.reportexplorer.FileSearch();
+	fs.setConditionArray(arrFc);
+	explorer.setSearch(fs);
+
+	explorer.submit();
+}
+
+function selectionChanged( selectedItem, pathName ){
+	selectedFile="";
+	if (selectedItem.getFileType() != "Directory")
+		selectedFile = pathName;
+}
+
+function shortenComment(objEditor, content) {
+	var c1 = content.replace(/<br \/>/g, "&nbsp;<br />"); //add a space before BR for short Text
+	c1 = c1.replace(/<p>/g, "&nbsp;<p>");  //add a space before P for short text
+	objEditor.setData(c1); //put spaced content back into editor
+	var txtC = objEditor.document.getBody().getText(); //get content without HTML tags
+	if (txtC.length > 49) {  //longer than 50 add ...
+		txtC = txtC.substring(0,49);
+		txtC = txtC + " ...";
+	}	
+	return txtC;
+}
+	
+function insertSelected() {
+	if ((selectedFile != '') && (selectedFile != null)) {
+		var c = CKEDITOR.instances.editor1.getData();
+		var c1 = shortenComment(CKEDITOR.instances.editor1, c)
+		window.open("/iportal/executereport.do?__executableName=/Applications/WorkFlowApp/Report%20Designs/WorkFlowAdmin.rptdesign&invokesubmit=true&__wait=wait&__requestType=immediate&pReportName="+encodeURIComponent(selectedFile)+"&pUpdateStatus=Submitted%20for%20Review&pKey="+Math.round(+new Date()/1000)+"&pShortComment="+encodeURIComponent(c1)+"&pUpdateComment="+encodeURIComponent(c));
+	}
+	else {
+		alert("You need to select a report.");
+	}
+}
+
+</script>
+</head>
+<body>
+<div id="btns">
+<br>
+<input type="button" onClick="javascript:insertSelected();" value="Insert Selected Report">&nbsp;
+<input type="button" onClick="javascript:explorer.submit();" value="Refresh">
+<hr></div>
+<div id="fileViewer">Loading...</div>
+<script>
+      var ck=document.createElement('script');
+      ck.setAttribute("type","text/javascript");
+      
+      ck.setAttribute("src", "/iportal/ckeditor/ckeditor.js");
+      document.getElementsByTagName("head")[0].appendChild(ck);
+
+</script>
+<div id="commentsDiv"><hr>
+<p>Enter comment below for selected report:</p>
+
+<textarea class="ckeditor" id="editor1"></textarea>
+</div>
+</body>
+</html>
