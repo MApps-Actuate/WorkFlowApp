@@ -51,7 +51,7 @@
                                 <gadget name="Gadget_3a264716-58af-4986-900b-a8020f716f00" id="7">
                                     <property name="height">105px</property>
                                     <property name="title">Reportlet - WorkFlowListing - Top Bar</property>
-                                    <property name="externalGadgetURI">/Work Flow/WorkFlowListing.rptdesign</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
                                     <property name="showTitle">true</property>
                                     <property name="showBorder">true</property>
                                     <property name="zIndex">2</property>
@@ -132,7 +132,7 @@
                                 <gadget name="Gadget_594ce3e1-28cc-4da8-b398-0a1bc1077dd2" id="13">
                                     <property name="height">183px</property>
                                     <property name="title">Waiting for Review</property>
-                                    <property name="externalGadgetURI">/Work Flow/WorkFlowListing.rptdesign</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
                                     <property name="showTitle">false</property>
                                     <property name="showBorder">true</property>
                                     <property name="zIndex">3</property>
@@ -199,7 +199,7 @@
                                 <gadget name="Gadget_4346c90b-e7e8-437d-80a9-0c7a22f428f8" id="16">
                                     <property name="height">138px</property>
                                     <property name="title">To Be Approved</property>
-                                    <property name="externalGadgetURI">/Work Flow/WorkFlowListing.rptdesign</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
                                     <property name="showTitle">false</property>
                                     <property name="showBorder">true</property>
                                     <property name="zIndex">4</property>
@@ -266,7 +266,7 @@
                                 <gadget name="Gadget_831d46a4-fdfa-4776-bf7f-0cd0516fa09b" id="19">
                                     <property name="height">142px</property>
                                     <property name="title">Completed</property>
-                                    <property name="externalGadgetURI">/Work Flow/WorkFlowListing.rptdesign</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
                                     <property name="showTitle">false</property>
                                     <property name="showBorder">true</property>
                                     <property name="zIndex">5</property>
@@ -317,7 +317,7 @@
                                 </gadget>
                                 <gadget name="Gadget_ad27489c-1bd5-47ab-9a8f-8d94c621d654" id="22">
                                     <property name="title">Parameter Gadget 1</property>
-                                    <property name="externalGadgetURI">/Work Flow/WorkFlowListing.rptdesign</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
                                     <property name="showTitle">true</property>
                                     <property name="showBorder">true</property>
                                     <property name="zIndex">6</property>

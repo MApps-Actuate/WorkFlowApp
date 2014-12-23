@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.2.3.v20131212-0430 Build &lt;4.2.3.v20131212-0430></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.3.v20131216-0430 Build &lt;4.2.3.v20131216-0430></property>
     <property name="units">in</property>
     <method name="clientInitialize"><![CDATA[
 ]]></method>
@@ -4242,7 +4242,7 @@ this.helpText = row["cKey"];]]></method>
                                         <list-property name="action">
                                             <structure>
                                                 <property name="linkType">hyperlink</property>
-                                                <expression name="uri" type="javascript">'http://actuateone.localdomain:8700/iportal/executereport.do?__requesttype=immediate&amp;__executablename=%2fWork%20Flow%2fWorkFlowFrame.rptdesign&amp;pReportName='+ row["FullReportName"] +'&amp;pKey='+row['cKey']+'&amp;__from=requestPage&amp;showBanner=false&amp;invokesubmit=true&amp;pShowEdit=false&amp;pShowComments=true'</expression>
+                                                <expression name="uri" type="javascript">'http://actuateone.localdomain:8700/iportal/executereport.do?__requesttype=immediate&amp;__executablename=%2fApplications%2fWorkFlowApp%2fReport%20Designs%2fWorkFlowFrame.rptdesign&amp;pReportName='+ row["FullReportName"] +'&amp;pKey='+row['cKey']+'&amp;__from=requestPage&amp;showBanner=false&amp;invokesubmit=true&amp;pShowEdit=false&amp;pShowComments=true'</expression>
                                                 <property name="targetWindow">_blank</property>
                                             </structure>
                                         </list-property>
