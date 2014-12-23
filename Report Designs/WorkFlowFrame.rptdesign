@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.2.3.v20131212-0430 Build &lt;4.2.3.v20131212-0430></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.3.v20131216-0430 Build &lt;4.2.3.v20131216-0430></property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -40,7 +40,7 @@ if (window["__first_load"] === undefined) {
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">/SAMPLES/Revenue History by Product Line.rptdesign</value>
+                <value type="constant">Another.rptdesign</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -627,17 +627,17 @@ and cKey=?]]></xml-property>
     </page-setup>
     <body>
         <extended-item extensionName="SqlWriteback" id="737">
+            <property name="dataSource">Comment Data Source</property>
+            <property name="itemOutput">Added $cnt record(s).</property>
+            <expression name="sqlStatement" type="javascript">if ((params["pUpdateStatus"].value != "") &amp;&amp; (params["pKey"] != "")) {&#13;
+		"INSERT INTO comments (cKey,Content,cDate,cUser,FullReportName,Status, shortContent) VALUES (\'" + params["pKey"].value + "\',\'" + params["pUpdateComment"].value + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'" + params["pUpdateStatus"].value + "\', \'" +  params["pShortComment"].value.replace(/'/g,"''") + "\')";&#13;
+	}</expression>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
                     <expression name="valueExpr" type="javascript">true</expression>
                 </structure>
             </list-property>
-            <property name="dataSource">Comment Data Source</property>
-            <property name="itemOutput">Added $cnt record(s).</property>
-            <expression name="sqlStatement" type="javascript">if ((params["pUpdateStatus"].value != "") &amp;&amp; (params["pKey"] != "")) {&#13;
-		"INSERT INTO comments (cKey,Content,cDate,cUser,FullReportName,Status, shortContent) VALUES (\'" + params["pKey"].value + "\',\'" + params["pUpdateComment"].value + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'" + params["pUpdateStatus"].value + "\', \'" +  params["pShortComment"].value.replace(/'/g,"''") + "\')";&#13;
-	}</expression>
         </extended-item>
         <grid id="601">
             <list-property name="userProperties">

@@ -1,9 +1,12 @@
 <html>
 <head>
-<script src="http://192.168.119.134:8700/iportal/jsapi" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+document.write("<script language='javascript' type='text/javascript' src='" + window.location.protocol + "//" + window.location.host  + "/iportal/jsapi'><\/sc" + "ript>");
+</script>
 <script>
 
-	var url = "http://192.168.119.134:8700/iportal";
+	var url = window.location.protocol + "//" + window.location.host  + "/iportal";
+	//alert(" Url is: " + url);
 	actuate.load("reportexplorer");
 	actuate.load("dialog");
 	var reqOpts = new actuate.RequestOptions();
@@ -74,7 +77,7 @@ function insertSelected() {
       var ck=document.createElement('script');
       ck.setAttribute("type","text/javascript");
       
-      ck.setAttribute("src", "/iportal/ckeditor/ckeditor.js");
+      ck.setAttribute("src", "ckeditor.js");
       document.getElementsByTagName("head")[0].appendChild(ck);
 
 </script>
