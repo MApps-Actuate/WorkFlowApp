@@ -13,6 +13,7 @@
         </structure>
     </list-property>
     <method name="onContentUpdate"><![CDATA[vwrRptName = this.getViewer().getReportName();
+
 if (window["__first_load"] === undefined) {
     window["__first_load"] = true;
 
@@ -1066,6 +1067,15 @@ this.onclick = function(event)
                         <property name="backgroundColor">green</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"ApproveButton"</expression>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if ((reportContext.getPersistentGlobalVariable("status")=="To Be Approved") &amp;&amp; (reportContext.getPersistentGlobalVariable("Role")=="Approver"))&#13;
+	false;&#13;
+else&#13;
+	true;</expression>
+                            </structure>
+                        </list-property>
                     </extended-item>
                     <extended-item extensionName="HTMLButton" name="btnReject" id="727">
                         <method name="clientScripts"><![CDATA[
@@ -1091,6 +1101,15 @@ this.onclick = function(event)
                         <property name="backgroundColor">red</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"RejectButton"</expression>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if ((reportContext.getPersistentGlobalVariable("status")=="To Be Approved") &amp;&amp; (reportContext.getPersistentGlobalVariable("Role")=="Approver"))&#13;
+	false;&#13;
+else&#13;
+	true;</expression>
+                            </structure>
+                        </list-property>
                     </extended-item>
                     <extended-item extensionName="HTMLButton" name="btnToBeApproved" id="728">
                         <method name="clientScripts"><![CDATA[
@@ -1116,30 +1135,16 @@ this.onclick = function(event)
                         <property name="backgroundColor">#FFDB5E</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"SubmitReviewButton"</expression>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if (((reportContext.getPersistentGlobalVariable("status")=="Submitted for Review") || (reportContext.getPersistentGlobalVariable("status")=="Rejected")) &amp;&amp; (reportContext.getPersistentGlobalVariable("Role")=="Reviewer"))&#13;
+	false;&#13;
+else&#13;
+	true;</expression>
+                            </structure>
+                        </list-property>
                     </extended-item>
-                    <text id="729">
-                        <property name="contentType">html</property>
-                        <text-property name="content"><![CDATA[<script>
-	//hide buttons on open
-	document.getElementById('js3_ApproveButton').style.display = 'none';
-	document.getElementById('js3_RejectButton').style.display = 'none';
-	document.getElementById('js3_SubmitReviewButton').style.display = 'none';
-		
-	//Approve &amp; Reject button for Role Approver
-	if (("<VALUE-OF>reportContext.getPersistentGlobalVariable("status")</VALUE-OF>"=="To Be Approved") &amp;&amp; ("<VALUE-OF>reportContext.getPersistentGlobalVariable("Role")</VALUE-OF>"=="Approver")) {
-		document.getElementById('js3_ApproveButton').style.display = 'inline';
-		document.getElementById('js3_RejectButton').style.display = 'inline';
-		document.getElementById('js3_SubmitReviewButton').style.display = 'none';
-	}
-	
-	//Submit for Review button for Role Reviewer
-	if ((("<VALUE-OF>reportContext.getPersistentGlobalVariable("status")</VALUE-OF>"=="Submitted for Review") || ("<VALUE-OF>reportContext.getPersistentGlobalVariable("status")</VALUE-OF>"=="Rejected")) &amp;&amp; ("<VALUE-OF>reportContext.getPersistentGlobalVariable("Role")</VALUE-OF>"=="Reviewer")) {
-		document.getElementById('js3_ApproveButton').style.display = 'none';
-		document.getElementById('js3_RejectButton').style.display = 'none';
-		document.getElementById('js3_SubmitReviewButton').style.display = 'inline';
-	}
-</script>]]></text-property>
-                    </text>
                     <text id="723">
                         <property name="contentType">html</property>
                         <text-property name="content"><![CDATA[<script>

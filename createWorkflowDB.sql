@@ -3,9 +3,10 @@
  * 
  * Assumptions:
  * 
- * 
-	CREATE DATABASE workflow;
  */
+
+CREATE DATABASE workflow;
+
 
 delimiter $$
 	

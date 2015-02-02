@@ -853,22 +853,9 @@ order by comments.cKey,comments.cDate]]></xml-property>
                                 <text id="837">
                                     <property name="contentType">html</property>
                                     <text-property name="content"><![CDATA[<script>
-//blinkInterval=false;
+//Functions for flashing browser title in the task bar.
+
 oldTitle = "Work Flow Listing";
-
-
-function getCookie(cName) {
-	var nameC = cName + "=";
-	var arrC = document.cookie.split(";");
-	for (var i=0; i<arrC.length; i++) {
-		var c = arrC[i];
-		while (c.charAt(0)==' ') c = c.substring(1);
-		if (c.indexOf(nameC) != -1)
-			return c.substring(nameC.length, c.length);
-	}
-	return "";
-}
-	
 
 function gotNewItem() {
     window.blinkInterval = setInterval("blink()", 1000);
@@ -2374,14 +2361,15 @@ this.helpText = row["cKey"];]]></method>
                                     <text id="824">
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[<script>
+//Sets the number of items in the list to determine if flashing the browser title is needed.
 
-reviewC = getCookie("reviewCnt");
+reviewC = sessionStorage.reviewCnt;
 if (reviewC != "") {
 	if ((parseInt(reviewC) < <VALUE-OF>vars["reviewCnt"]</VALUE-OF>) &amp;&amp; 		("<VALUE-OF>reportContext.getPersistentGlobalVariable("Role")</VALUE-OF>" == "Reviewer")){
 		gotNewItem();
 	}
 }
-document.cookie = "reviewCnt=" + <VALUE-OF>vars["reviewCnt"]</VALUE-OF>;
+sessionStorage.reviewCnt = <VALUE-OF>vars["reviewCnt"]</VALUE-OF>;
 
 </script>]]></text-property>
                                     </text>
@@ -3324,14 +3312,15 @@ this.helpText = row["cKey"];]]></method>
                                     <text id="833">
                                         <property name="contentType">html</property>
                                         <text-property name="content"><![CDATA[<script>
+//Sets the number of items in the list to determine if flashing the browser title is needed.
 
-approveC = getCookie("approveCnt");
+approveC = sessionStorage.approveCnt;
 if (approveC != "") {
 	if ((parseInt(approveC) < <VALUE-OF>vars["approveCnt"]</VALUE-OF>) &amp;&amp; 		("<VALUE-OF>reportContext.getPersistentGlobalVariable("Role")</VALUE-OF>" == "Approver")){
 		gotNewItem();
 	}
 }
-document.cookie = "approveCnt=" + <VALUE-OF>vars["approveCnt"]</VALUE-OF>;
+sessionStorage.approveCnt = <VALUE-OF>vars["approveCnt"]</VALUE-OF>;
 
 </script>]]></text-property>
                                     </text>
@@ -4241,9 +4230,42 @@ this.helpText = row["cKey"];]]></method>
                                         <text-property name="text">View Comments</text-property>
                                         <list-property name="action">
                                             <structure>
-                                                <property name="linkType">hyperlink</property>
-                                                <expression name="uri" type="javascript">'http://actuateone.localdomain:8700/iportal/executereport.do?__requesttype=immediate&amp;__executablename=%2fApplications%2fWorkFlowApp%2fReport%20Designs%2fWorkFlowFrame.rptdesign&amp;pReportName='+ row["FullReportName"] +'&amp;pKey='+row['cKey']+'&amp;__from=requestPage&amp;showBanner=false&amp;invokesubmit=true&amp;pShowEdit=false&amp;pShowComments=true'</expression>
+                                                <property name="linkType">drill-through</property>
+                                                <property name="reportName">WorkFlowFrame.rptdesign</property>
                                                 <property name="targetWindow">_blank</property>
+                                                <property name="targetFileType">report-design</property>
+                                                <list-property name="paramBindings">
+                                                    <structure>
+                                                        <property name="paramName">pReportName</property>
+                                                        <simple-property-list name="expression">
+                                                            <value type="javascript">row["FullReportName"]</value>
+                                                        </simple-property-list>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="paramName">pKey</property>
+                                                        <simple-property-list name="expression">
+                                                            <value type="javascript">row["cKey"]</value>
+                                                        </simple-property-list>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="paramName">pShowComments</property>
+                                                        <simple-property-list name="expression">
+                                                            <value type="javascript">true</value>
+                                                        </simple-property-list>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="paramName">pShowEdit</property>
+                                                        <simple-property-list name="expression">
+                                                            <value type="javascript">false</value>
+                                                        </simple-property-list>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="paramName">invokesubmit</property>
+                                                        <simple-property-list name="expression">
+                                                            <value type="javascript">true</value>
+                                                        </simple-property-list>
+                                                    </structure>
+                                                </list-property>
                                             </structure>
                                         </list-property>
                                     </label>
