@@ -4,7 +4,7 @@ WorkFlowApp
 The WorkFlow application shows how to create a simple web application that does CRUD operations in BIRT iHub.
 
 We require:
-   - a MySQL database
+   - an MSSQL database
    - CKEditor.  You can download the CKEditor at http://www.ckeditor.com and install it at <iHub 3.0 URL>/iportal/.
    - SQL Writeback jar files
    - iHub and BDPro
@@ -27,12 +27,10 @@ Installment Steps:
     You can obtain the latest version of CKEditor from http://www.ckeditor.com
     We found setting config.enterMode = CKEDITOR.ENTER_BR; in config.js made for a better experience.
     
-3. Create the MySQL Workflow database:
-	a. Create the user that is going to own the Workflow database.  See MySQL documentation for details.
-	    (You can use the default "root/root".)
-	b. Create the workflow database while logged into MySQL as the user in step a by executing:
-		CREATE DATABASE workflow;
-	c. Create the comments table in the workflow database by running the script: createWorkflowDB.sql  
+    Restart the Actuate iHub service
+    
+3. Create the MSSQL Workflow database:
+	a. Create the workflow database and comments table by running the script: createWorkflowDB.sql  
 	
 4. Deploy the Workflow Application in iHub:
 	a. Publish the WorkflowApp from BD Pro to iHub using the Publish Project option, if available.

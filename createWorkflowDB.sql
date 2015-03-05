@@ -1,34 +1,47 @@
-/**
- * Workflow Database Creation Script
- * 
- * Assumptions:
- * 
- */
+USE [master]
+Go
 
-CREATE DATABASE workflow;
+CREATE DATABASE [workflow]
+Go
 
+USE [workflow]
+Go
 
-delimiter $$
-	
-USE workflow;
-	
-SET FOREIGN_KEY_CHECKS=0;	
 
 /*
  * comments table contains all the information needed for workflow.  The report full name includes path.
  * the user is the BIRT login user name and status is where the report is in the workflow process.
  * 
  */
-	   DROP TABLE IF EXISTS comments;
+		
+		SET ANSI_NULLS ON
+		GO
 
-	   CREATE TABLE comments (
-	   		ID  bigint(20) unsigned NOT NULL auto_increment,
-	   		cKey varchar(50) NOT NULL,
-	   		Content  mediumtext NOT NULL,
-	   		cDate DATETIME NOT NULL,
-	   		cUser varchar(45) NOT NULL,
-	   		FullReportName varchar(256) NOT NULL,
-	   		Status varchar(45) NOT NULL,
-	   		shortContent varchar(55) DEFAULT NULL,
-        PRIMARY KEY  (`ID`)
-		) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+		SET QUOTED_IDENTIFIER ON
+		GO
+
+		SET ANSI_PADDING ON
+		GO
+		
+	   CREATE TABLE [dbo].[comments] (
+   			[ID] [int] IDENTITY(1,1) PRIMARY KEY,
+   			[cKey] [varchar](50) NOT NULL,
+   			[Content]  [nvarchar](MAX) NOT NULL,
+   			[cDate] [DATETIME] NOT NULL,
+   			[cUser] [varchar](45) NOT NULL,
+   			[FullReportName] [varchar](256) NOT NULL,
+   			[Status] [varchar](45) NOT NULL,
+   			[shortContent] [varchar](55) NULL
+		) 
+		Go
+		
+CREATE LOGIN [wfapp] WITH PASSWORD=N'wfapp', DEFAULT_DATABASE=[workflow], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+Go
+
+CREATE USER [wfapp] FOR LOGIN [wfapp] WITH DEFAULT_SCHEMA=[db_datareader]
+GO
+
+GRANT SELECT, UPDATE, DELETE, INSERT ON [dbo].[comments] TO [wfapp]
+GO
+
+

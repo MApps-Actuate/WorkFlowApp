@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.2.3.v20131212-0430 Build &lt;4.2.3.v20131212-0430></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v20150128-0131 Build &lt;4.2.3.v20150128-0131></property>
     <property name="units">in</property>
+    <property name="theme">WFApp_library.WFColors</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
     <list-property name="libraries">
         <structure>
-            <property name="fileName">/ThemesReportItems3.rptlibrary</property>
-            <property name="namespace">ThemesReportItems3</property>
+            <property name="fileName">Report Libraries/WFApp_library.rptlibrary</property>
+            <property name="namespace">WFApp_library</property>
         </structure>
     </list-property>
     <parameters>
@@ -97,29 +98,8 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Comment Data Source" id="735">
-            <list-property name="privateDriverProperties">
-                <ex-property>
-                    <name>metadataBidiFormatStr</name>
-                    <value>ILYNN</value>
-                </ex-property>
-                <ex-property>
-                    <name>disabledMetadataBidiFormatStr</name>
-                </ex-property>
-                <ex-property>
-                    <name>contentBidiFormatStr</name>
-                    <value>ILYNN</value>
-                </ex-property>
-                <ex-property>
-                    <name>disabledContentBidiFormatStr</name>
-                </ex-property>
-            </list-property>
-            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3306/workFlow</property>
-            <property name="odaUser">root</property>
-            <property name="odaIsolationMode">serializable</property>
-            <encrypted-property name="odaPassword" encryptionID="jce">10e521fdf32454a9</encrypted-property>
-        </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Comment Data Source" id="898"
+ extends="WFApp_library.Comment Data Source"/>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Insert Data Set" id="743">
@@ -899,7 +879,7 @@ from comments]]></xml-property>
         </extended-item>
         <table id="744">
             <property name="dataSet">Insert Data Set</property>
-            <property name="theme">ThemesReportItems3.Modern Table</property>
+            <property name="theme">WFApp_library.Modern Table</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -1149,7 +1129,7 @@ this.onclick = function(event)
                             </structure>
                         </list-property>
                         <property name="dataSet">Steps Data Set</property>
-                        <property name="theme">ThemesReportItems3.Modern Table</property>
+                        <property name="theme">WFApp_library.Modern Table</property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">ID</property>
@@ -1323,39 +1303,35 @@ function checkDown(obj) {
                                     <list-property name="highlightRules">
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#000080</property>
-                                            <property name="color">#FFFFFF</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"Submitted for Review"</value>
                                             </simple-property-list>
+                                            <property name="style">SubmittedForReview</property>
                                         </structure>
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#FED225</property>
-                                            <property name="color">#000000</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"To Be Approved"</value>
                                             </simple-property-list>
+                                            <property name="style">SubmitForApproval</property>
                                         </structure>
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#008000</property>
-                                            <property name="color">#FFFFFF</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"Approved"</value>
                                             </simple-property-list>
+                                            <property name="style">Approve</property>
                                         </structure>
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#FF0000</property>
-                                            <property name="color">#FFFFFF</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"Rejected"</value>
                                             </simple-property-list>
+                                            <property name="style">Reject</property>
                                         </structure>
                                     </list-property>
                                     <data id="833">

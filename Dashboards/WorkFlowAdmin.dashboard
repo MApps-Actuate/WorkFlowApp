@@ -10,12 +10,12 @@
     </list-property>
     <body>
         <text name="8390adb3-a15d-4b1c-8809-cb7cfab93d11" id="11">
-            <text-property name="content"><![CDATA[http://actuateone.localdomain:8700/iportal/servlet/DownloadFile/AdminGadget.html?name=%2fApplications%2fWorkFlowApp%2fReport%20Designs%2fAdminGadget%2ehtml%3b1&amp;fileExtension=HTML&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false&amp;locale=en_US]]></text-property>
+            <text-property name="content"><![CDATA[http://localhost:8700/iportal/servlet/DownloadFile/AdminGadget.html?name=%2fApplications%2fWorkFlowApp%2fReport%20Designs%2fAdminGadget%2ehtml%3b1&amp;fileExtension=HTML&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false&amp;locale=en_US]]></text-property>
         </text>
     </body>
     <property name="dashboardView">
         <dashboard id="2">
-            <property name="activeTab">4ad91a41-39a6-4177-bee5-f2b8bf0a0810</property>
+            <property name="activeTab">180a3b33-87c3-4efd-af27-ac689d7b111c</property>
             <property name="tabs">
                 <tab-element name="4ad91a41-39a6-4177-bee5-f2b8bf0a0810" id="13">
                     <property name="title">Work Flow Queue</property>

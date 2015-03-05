@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.2.3.v20131216-0430 Build &lt;4.2.3.v20131216-0430></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v20150128-0131 Build &lt;4.2.3.v20150128-0131></property>
     <property name="units">in</property>
+    <property name="theme">WFApp_library.WFColors</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
     <list-property name="libraries">
         <structure>
-            <property name="fileName">ThemesReportItems3.rptlibrary</property>
-            <property name="namespace">ThemesReportItems3</property>
+            <property name="fileName">Report Libraries/WFApp_library.rptlibrary</property>
+            <property name="namespace">WFApp_library</property>
         </structure>
     </list-property>
     <method name="onContentUpdate"><![CDATA[vwrRptName = this.getViewer().getReportName();
@@ -160,11 +161,11 @@ if (window["__first_load"] === undefined) {
                     <name>disabledContentBidiFormatStr</name>
                 </ex-property>
             </list-property>
-            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3306/workFlow</property>
-            <property name="odaUser">root</property>
+            <property name="odaDriverClass">com.actuate.jdbc.sqlserver.SQLServerDriver</property>
+            <property name="odaURL">jdbc:actuate:sqlserver://ACTUATEONE\sqlexpress;databasename=workflow</property>
+            <property name="odaUser">wfapp</property>
             <property name="odaIsolationMode">serializable</property>
-            <encrypted-property name="odaPassword" encryptionID="jce">10e521fdf32454a9</encrypted-property>
+            <encrypted-property name="odaPassword" encryptionID="jce">38bf60bc5cb36729</encrypted-property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -628,17 +629,17 @@ and cKey=?]]></xml-property>
     </page-setup>
     <body>
         <extended-item extensionName="SqlWriteback" id="737">
-            <property name="dataSource">Comment Data Source</property>
-            <property name="itemOutput">Added $cnt record(s).</property>
-            <expression name="sqlStatement" type="javascript">if ((params["pUpdateStatus"].value != "") &amp;&amp; (params["pKey"] != "")) {&#13;
-		"INSERT INTO comments (cKey,Content,cDate,cUser,FullReportName,Status, shortContent) VALUES (\'" + params["pKey"].value + "\',\'" + params["pUpdateComment"].value + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'" + params["pUpdateStatus"].value + "\', \'" +  params["pShortComment"].value.replace(/'/g,"''") + "\')";&#13;
-	}</expression>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
                     <expression name="valueExpr" type="javascript">true</expression>
                 </structure>
             </list-property>
+            <property name="dataSource">Comment Data Source</property>
+            <property name="itemOutput">Added $cnt record(s).</property>
+            <expression name="sqlStatement" type="javascript">if ((params["pUpdateStatus"].value != "") &amp;&amp; (params["pKey"] != "")) {&#13;
+		"INSERT INTO comments (cKey,Content,cDate,cUser,FullReportName,Status, shortContent) VALUES (\'" + params["pKey"].value + "\',\'" + params["pUpdateComment"].value + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'" + params["pUpdateStatus"].value + "\', \'" +  params["pShortComment"].value.replace(/'/g,"''") + "\')";&#13;
+	}</expression>
         </extended-item>
         <grid id="601">
             <list-property name="userProperties">
@@ -767,7 +768,7 @@ and cKey=?]]></xml-property>
                     <table id="657">
                         <property name="width">10.375in</property>
                         <property name="dataSet">Comment Data Set</property>
-                        <property name="theme">ThemesReportItems3.Modern Table</property>
+                        <property name="theme">WFApp_library.Modern Table</property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
@@ -901,39 +902,35 @@ and cKey=?]]></xml-property>
                                     <list-property name="highlightRules">
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#000080</property>
-                                            <property name="color">#FFFFFF</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"Submitted for Review"</value>
                                             </simple-property-list>
+                                            <property name="style">SubmittedForReview</property>
                                         </structure>
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#FED225</property>
-                                            <property name="color">#000000</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"To Be Approved"</value>
                                             </simple-property-list>
+                                            <property name="style">SubmitForApproval</property>
                                         </structure>
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#008000</property>
-                                            <property name="color">#FFFFFF</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"Approved"</value>
                                             </simple-property-list>
+                                            <property name="style">Approve</property>
                                         </structure>
                                         <structure>
                                             <property name="operator">eq</property>
-                                            <property name="backgroundColor">#FF0000</property>
-                                            <property name="color">#FFFFFF</property>
                                             <expression name="testExpr" type="javascript">row["Status"]</expression>
                                             <simple-property-list name="value1">
                                                 <value type="javascript">"Rejected"</value>
                                             </simple-property-list>
+                                            <property name="style">Reject</property>
                                         </structure>
                                     </list-property>
                                     <data id="675">
@@ -1042,6 +1039,7 @@ this.onclick = function(event)
                         <expression name="text" type="constant">Save Comment Only</expression>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"CommentButton"</expression>
+                        <property name="style">Comment</property>
                     </extended-item>
                     <extended-item extensionName="HTMLButton" name="btnApprove" id="726">
                         <method name="clientScripts"><![CDATA[
@@ -1064,7 +1062,6 @@ this.onclick = function(event)
 ]]></method>
                         <expression name="text" type="constant">Approve</expression>
                         <property name="color">white</property>
-                        <property name="backgroundColor">green</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"ApproveButton"</expression>
                         <list-property name="visibility">
@@ -1076,6 +1073,7 @@ else&#13;
 	true;</expression>
                             </structure>
                         </list-property>
+                        <property name="style">Approve</property>
                     </extended-item>
                     <extended-item extensionName="HTMLButton" name="btnReject" id="727">
                         <method name="clientScripts"><![CDATA[
@@ -1098,7 +1096,6 @@ this.onclick = function(event)
 ]]></method>
                         <expression name="text" type="constant">Reject</expression>
                         <property name="color">white</property>
-                        <property name="backgroundColor">red</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"RejectButton"</expression>
                         <list-property name="visibility">
@@ -1110,6 +1107,7 @@ else&#13;
 	true;</expression>
                             </structure>
                         </list-property>
+                        <property name="style">Reject</property>
                     </extended-item>
                     <extended-item extensionName="HTMLButton" name="btnToBeApproved" id="728">
                         <method name="clientScripts"><![CDATA[
@@ -1132,7 +1130,8 @@ this.onclick = function(event)
 ]]></method>
                         <expression name="text" type="constant">Submit for Approval</expression>
                         <property name="color">black</property>
-                        <property name="backgroundColor">#FFDB5E</property>
+                        <property name="backgroundImageType">url</property>
+                        <property name="backgroundRepeat">repeat</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"SubmitReviewButton"</expression>
                         <list-property name="visibility">
@@ -1144,7 +1143,30 @@ else&#13;
 	true;</expression>
                             </structure>
                         </list-property>
+                        <property name="style">SubmitForApproval</property>
                     </extended-item>
+                    <text id="742">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<script>
+//This is a workaround for button backgrounds not working in iHub 3.1
+
+	$(document).ready(function() {
+		$("[id$='SubmitReviewButton']").children("button").css("background-color", "#FFDB5E");
+	});
+	
+	$(document).ready(function() {
+		$("[id$='CommentButton']").children("button").css("background-color", "white");
+	});
+	
+	$(document).ready(function() {
+		$("[id$='RejectButton']").children("button").css("background-color", "red");
+	});
+	
+	$(document).ready(function() {
+		$("[id$='ApproveButton']").children("button").css("background-color", "green");
+	});
+</script>]]></text-property>
+                    </text>
                     <text id="723">
                         <property name="contentType">html</property>
                         <text-property name="content"><![CDATA[<script>
