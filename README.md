@@ -5,7 +5,9 @@ The WorkFlow application shows how to create a simple web application that does 
 
 We require:
    - an MSSQL database
-   - CKEditor.  You can download the CKEditor at http://www.ckeditor.com and install it at <iHub 3.0 URL>/iportal/.
+   - CKEditor.  You can download the CKEditor at http://www.ckeditor.com (v4.3.2 is last known compatible version) and install it at:
+   		 <iHub 3.0 URL>/iportal/ 
+   		 iHub 16 /web/birtservice
    - SQL Writeback jar files
    - iHub and BDPro
    		
