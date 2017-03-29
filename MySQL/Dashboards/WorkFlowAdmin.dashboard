@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.3.v20131216-0430 Build &lt;4.2.3.v20131216-0430></property>
+    <property name="layoutPreference">auto layout</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">ThemesReportItems3.rptlibrary</property>
+            <property name="namespace">ThemesReportItems3</property>
+        </structure>
+    </list-property>
+    <body>
+        <text name="8390adb3-a15d-4b1c-8809-cb7cfab93d11" id="11">
+            <text-property name="content"><![CDATA[http://ACTUATEONE:8700/iportal/servlet/DownloadFile/AdminGadget.html?name=%2fApplications%2fWorkFlowApp%2fReport%20Designs%2fAdminGadget%2ehtml%3b1&amp;fileExtension=HTML&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false&amp;locale=en_US]]></text-property>
+        </text>
+    </body>
+    <property name="dashboardView">
+        <dashboard id="2">
+            <property name="activeTab">180a3b33-87c3-4efd-af27-ac689d7b111c</property>
+            <property name="tabs">
+                <tab-element name="4ad91a41-39a6-4177-bee5-f2b8bf0a0810" id="13">
+                    <property name="title">Work Flow Queue</property>
+                    <property name="sections">
+                        <section id="14">
+                            <property name="width">90.10767160161507%</property>
+                            <property name="gadgets">
+                                <gadget name="Gadget_3a264716-58af-4986-900b-a8020f716f00" id="19">
+                                    <property name="height">105px</property>
+                                    <property name="title">Reportlet - WorkFlowListing - Top Bar</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                    <property name="showTitle">true</property>
+                                    <property name="showBorder">true</property>
+                                    <property name="zIndex">2</property>
+                                    <property name="showScrollBar">false</property>
+                                    <structure name="autoRefresh">
+                                        <property name="measure">20</property>
+                                        <property name="unit">second</property>
+                                    </structure>
+                                    <property name="height">105px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="20">
+                                            <property name="showCaption">false</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="21">
+                                            <list-property name="userProperties">
+                                                <structure>
+                                                    <property name="name">showViewerToolbar</property>
+                                                    <property name="type">boolean</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="showViewerToolbar">false</property>
+                                            <property name="gadgetType">viewer</property>
+                                            <property name="externalContentRef">
+                                                <external-element-ref>
+                                                    <property name="sourceFile">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                                    <property name="targetBookmark">Top Bar</property>
+                                                </external-element-ref>
+                                            </property>
+                                            <property name="paramSettings">
+                                                <param-setting>
+                                                    <property name="paramName">pStepOverDue</property>
+                                                    <expression name="value">30</expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript">30</expression>
+                                                </param-setting>
+                                            </property>
+                                        </data-view>
+                                    </property>
+                                </gadget>
+                                <gadget name="2880b35d-3394-44bb-aba2-67b9cd5fb6f0" id="16">
+                                    <property name="height">150px</property>
+                                    <property name="zIndex">1</property>
+                                    <property name="isVisible">false</property>
+                                    <property name="height">150px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="18">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">24pt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#000000</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <current-selections id="17"/>
+                                    </property>
+                                    <property name="subscribeTo">
+                                        <event-subscriber>
+                                            <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
+                                            <property name="eventObjects">
+                                                <event-object>
+                                                    <property name="gadget">Gadget_ad27489c-1bd5-47ab-9a8f-8d94c621d654</property>
+                                                </event-object>
+                                            </property>
+                                        </event-subscriber>
+                                    </property>
+                                </gadget>
+                                <gadget name="Gadget_594ce3e1-28cc-4da8-b398-0a1bc1077dd2" id="22">
+                                    <property name="height">183px</property>
+                                    <property name="title">Waiting for Review</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                    <property name="showTitle">false</property>
+                                    <property name="showBorder">true</property>
+                                    <property name="zIndex">3</property>
+                                    <property name="showScrollBar">true</property>
+                                    <structure name="autoRefresh">
+                                        <property name="measure">20</property>
+                                        <property name="unit">second</property>
+                                    </structure>
+                                    <property name="height">183px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="23">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="24">
+                                            <list-property name="userProperties">
+                                                <structure>
+                                                    <property name="name">showViewerToolbar</property>
+                                                    <property name="type">boolean</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="showViewerToolbar">false</property>
+                                            <property name="gadgetType">viewer</property>
+                                            <property name="externalContentRef">
+                                                <external-element-ref>
+                                                    <property name="sourceFile">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                                    <property name="targetBookmark">Waiting for Review</property>
+                                                </external-element-ref>
+                                            </property>
+                                            <property name="paramSettings">
+                                                <param-setting>
+                                                    <property name="paramName">pStepOverDue</property>
+                                                    <expression name="value">30</expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript">30</expression>
+                                                </param-setting>
+                                            </property>
+                                        </data-view>
+                                    </property>
+                                    <property name="subscribeTo">
+                                        <event-subscriber>
+                                            <property name="eventName">SELECT_EVENT:SEMANTIC_parameter</property>
+                                            <property name="eventObjects">
+                                                <event-object>
+                                                    <property name="appliedTo">{"pStepOverDue":"pStepOverDue"}</property>
+                                                    <property name="gadget">Gadget_ad27489c-1bd5-47ab-9a8f-8d94c621d654</property>
+                                                </event-object>
+                                            </property>
+                                        </event-subscriber>
+                                    </property>
+                                </gadget>
+                                <gadget name="Gadget_4346c90b-e7e8-437d-80a9-0c7a22f428f8" id="25">
+                                    <property name="height">138px</property>
+                                    <property name="title">To Be Approved</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                    <property name="showTitle">false</property>
+                                    <property name="showBorder">true</property>
+                                    <property name="zIndex">4</property>
+                                    <property name="showScrollBar">true</property>
+                                    <structure name="autoRefresh">
+                                        <property name="measure">20</property>
+                                        <property name="unit">second</property>
+                                    </structure>
+                                    <property name="height">138px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="26">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="27">
+                                            <list-property name="userProperties">
+                                                <structure>
+                                                    <property name="name">showViewerToolbar</property>
+                                                    <property name="type">boolean</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="showViewerToolbar">false</property>
+                                            <property name="gadgetType">viewer</property>
+                                            <property name="externalContentRef">
+                                                <external-element-ref>
+                                                    <property name="sourceFile">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                                    <property name="targetBookmark">To Be Approved</property>
+                                                </external-element-ref>
+                                            </property>
+                                            <property name="paramSettings">
+                                                <param-setting>
+                                                    <property name="paramName">pStepOverDue</property>
+                                                    <expression name="value">30</expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript">30</expression>
+                                                </param-setting>
+                                            </property>
+                                        </data-view>
+                                    </property>
+                                    <property name="subscribeTo">
+                                        <event-subscriber>
+                                            <property name="eventName">SELECT_EVENT:SEMANTIC_parameter</property>
+                                            <property name="eventObjects">
+                                                <event-object>
+                                                    <property name="appliedTo">{"pStepOverDue":"pStepOverDue"}</property>
+                                                    <property name="gadget">Gadget_ad27489c-1bd5-47ab-9a8f-8d94c621d654</property>
+                                                </event-object>
+                                            </property>
+                                        </event-subscriber>
+                                    </property>
+                                </gadget>
+                                <gadget name="Gadget_831d46a4-fdfa-4776-bf7f-0cd0516fa09b" id="28">
+                                    <property name="height">142px</property>
+                                    <property name="title">Completed</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                    <property name="showTitle">false</property>
+                                    <property name="showBorder">true</property>
+                                    <property name="zIndex">5</property>
+                                    <property name="showScrollBar">true</property>
+                                    <structure name="autoRefresh">
+                                        <property name="measure">20</property>
+                                        <property name="unit">second</property>
+                                    </structure>
+                                    <property name="height">142px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="29">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="30">
+                                            <list-property name="userProperties">
+                                                <structure>
+                                                    <property name="name">showViewerToolbar</property>
+                                                    <property name="type">boolean</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="showViewerToolbar">false</property>
+                                            <property name="gadgetType">viewer</property>
+                                            <property name="externalContentRef">
+                                                <external-element-ref>
+                                                    <property name="sourceFile">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                                    <property name="targetBookmark">Completed</property>
+                                                </external-element-ref>
+                                            </property>
+                                            <property name="paramSettings">
+                                                <param-setting>
+                                                    <property name="paramName">pStepOverDue</property>
+                                                    <expression name="value">30</expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript">30</expression>
+                                                </param-setting>
+                                            </property>
+                                        </data-view>
+                                    </property>
+                                </gadget>
+                                <gadget name="Gadget_ad27489c-1bd5-47ab-9a8f-8d94c621d654" id="37">
+                                    <property name="title">Parameter Gadget 1</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                    <property name="showTitle">true</property>
+                                    <property name="showBorder">true</property>
+                                    <property name="zIndex">6</property>
+                                    <property name="showScrollBar">false</property>
+                                    <property name="caption">
+                                        <gadget-caption id="38">
+                                            <property name="showCaption">false</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="40">
+                                            <property name="gadgetType">parameter</property>
+                                            <property name="externalContentRef">
+                                                <external-element-ref>
+                                                    <property name="sourceFile">/Applications/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign</property>
+                                                </external-element-ref>
+                                            </property>
+                                            <property name="paramSettings">
+                                                <param-setting>
+                                                    <property name="paramName">pStepOverDue</property>
+                                                    <expression name="value">30</expression>
+                                                    <property name="isHidden">false</property>
+                                                    <expression name="defaultValue" type="javascript">30</expression>
+                                                </param-setting>
+                                            </property>
+                                        </data-view>
+                                    </property>
+                                    <property name="observers">
+                                        <event-subscriber>
+                                            <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
+                                            <property name="eventObjects">
+                                                <event-object>
+                                                    <property name="gadget">2880b35d-3394-44bb-aba2-67b9cd5fb6f0</property>
+                                                </event-object>
+                                            </property>
+                                        </event-subscriber>
+                                        <event-subscriber>
+                                            <property name="eventName">SELECT_EVENT:SEMANTIC_parameter</property>
+                                            <property name="eventObjects">
+                                                <event-object>
+                                                    <property name="appliedTo">{"pStepOverDue":"pStepOverDue"}</property>
+                                                    <property name="gadget">Gadget_594ce3e1-28cc-4da8-b398-0a1bc1077dd2</property>
+                                                </event-object>
+                                                <event-object>
+                                                    <property name="appliedTo">{"pStepOverDue":"pStepOverDue"}</property>
+                                                    <property name="gadget">Gadget_4346c90b-e7e8-437d-80a9-0c7a22f428f8</property>
+                                                </event-object>
+                                            </property>
+                                        </event-subscriber>
+                                    </property>
+                                </gadget>
+                            </property>
+                        </section>
+                        <section id="15">
+                            <property name="width">9.892328398384926%</property>
+                        </section>
+                    </property>
+                </tab-element>
+                <tab-element name="180a3b33-87c3-4efd-af27-ac689d7b111c" id="3">
+                    <property name="title">Admin</property>
+                    <property name="sections">
+                        <section id="4">
+                            <property name="width">46.209150326797385%</property>
+                            <property name="gadgets">
+                                <gadget name="3f86ef6a-79ec-4e6d-92af-97aac52982d8" id="9">
+                                    <property name="height">800px</property>
+                                    <property name="title">Insert New Report in Work Flow</property>
+                                    <property name="gadgetContentType">url</property>
+                                    <property name="zIndex">2</property>
+                                    <property name="showScrollBar">true</property>
+                                    <property name="height">800px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="10">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="12">
+                                            <property name="gadgetType">embedded</property>
+                                            <property name="internalReportLetRef">8390adb3-a15d-4b1c-8809-cb7cfab93d11</property>
+                                        </data-view>
+                                    </property>
+                                </gadget>
+                                <gadget name="f7d977a8-310c-4541-8aae-8cccb96c6fa8" id="6">
+                                    <property name="height">150px</property>
+                                    <property name="zIndex">1</property>
+                                    <property name="isVisible">false</property>
+                                    <property name="height">150px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="8">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"tahoma", "arial", "verdana", sans-serif</property>
+                                            <property name="fontSize">8pt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#000000</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <current-selections id="7"/>
+                                    </property>
+                                </gadget>
+                            </property>
+                        </section>
+                        <section id="5">
+                            <property name="width">53.790849673202615%</property>
+                            <property name="gadgets">
+                                <gadget name="Gadget_d742dc50-a0cc-4ed5-a72c-9e2ba085ceac" id="34">
+                                    <property name="height">800px</property>
+                                    <property name="title">Delete from Work Flow</property>
+                                    <property name="externalGadgetURI">/Applications/WorkFlowApp/Report Designs/WorkFlowAdmin.rptdesign</property>
+                                    <property name="showTitle">true</property>
+                                    <property name="showBorder">true</property>
+                                    <property name="zIndex">3</property>
+                                    <property name="showScrollBar">true</property>
+                                    <property name="height">800px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="35">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Source Sans Pro"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="36">
+                                            <list-property name="userProperties">
+                                                <structure>
+                                                    <property name="name">showViewerToolbar</property>
+                                                    <property name="type">boolean</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="showViewerToolbar">true</property>
+                                            <property name="gadgetType">viewer</property>
+                                            <property name="externalContentRef">
+                                                <external-element-ref>
+                                                    <property name="sourceFile">/Applications/WorkFlowApp/Report Designs/WorkFlowAdmin.rptdesign</property>
+                                                    <property name="targetBookmark">WFModify</property>
+                                                </external-element-ref>
+                                            </property>
+                                            <property name="paramSettings">
+                                                <param-setting>
+                                                    <property name="paramName">pReportName</property>
+                                                    <expression name="value">/SAMPLES/TwitterODA.rptdesign</expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript">/SAMPLES/TwitterODA.rptdesign</expression>
+                                                </param-setting>
+                                                <param-setting>
+                                                    <property name="paramName">pUpdateStatus</property>
+                                                    <expression name="value"></expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript"></expression>
+                                                </param-setting>
+                                                <param-setting>
+                                                    <property name="paramName">pUpdateComment</property>
+                                                    <expression name="value"></expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript"></expression>
+                                                </param-setting>
+                                                <param-setting>
+                                                    <property name="paramName">pKey</property>
+                                                    <expression name="value"></expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript"></expression>
+                                                </param-setting>
+                                                <param-setting>
+                                                    <property name="paramName">pShortComment</property>
+                                                    <expression name="value"></expression>
+                                                    <property name="isHidden">true</property>
+                                                    <expression name="defaultValue" type="javascript"></expression>
+                                                </param-setting>
+                                            </property>
+                                        </data-view>
+                                    </property>
+                                </gadget>
+                            </property>
+                        </section>
+                    </property>
+                </tab-element>
+            </property>
+        </dashboard>
+    </property>
+</report>
