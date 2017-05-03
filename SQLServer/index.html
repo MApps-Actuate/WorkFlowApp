@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Work Flow Application</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			
+	<link href="/iportal/common/jslib/themes/default/birt360.css" type="text/css" rel="stylesheet" >
+	<link href="/iportal/common/jslib/themes/default/yggdrasil.css" type="text/css" rel="stylesheet" >
+	
+	<style>
+	.actuate-dashboard-view-outerwrapper {
+		padding: 0 !important;
+	}
+	</style>
+	
+	<script type="text/javascript" src="/iportal/jsapi"></script>
+	<script>
+		actuate.load("viewer");
+		var reqOps = new actuate.RequestOptions( );
+		reqOps.setRepositoryType(actuate.RequestOptions.REPOSITORY_ENCYCLOPEDIA);
+		actuate.initialize("/iportal",reqOps,null, null, afterInit );
+		function afterInit() {
+			vwr = new actuate.Viewer("splashDiv");
+			vwr.setWidth(800);
+			vwr.setHeight(600);
+			var uiOpts = new actuate.viewer.UIOptions();
+			uiOpts.enableToolBar(false);
+			vwr.setUIOptions(uiOpts);
+			vwr.setReportName("/Applications/WorkFlowApp/Report Designs/splashscreen.rptdesign");
+			vwr.submit();
+		}
+	</script>
+
+	
+</head>
+<body>
+	<div style="width:100%; margin:auto;">
+		<table width="100%"><tr><td style="padding:0; text-align:center;"><div id="splashDiv" style="background:#FFFFFF; vertical-align:middle; height:600;"></div></td></tr></table>
+	</div>
+</body>
+</html>
