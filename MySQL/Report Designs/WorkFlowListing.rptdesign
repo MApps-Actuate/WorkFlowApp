@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v20150128-0131 Build &lt;4.2.3.v20150128-0131></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
     <property name="units">in</property>
     <method name="clientInitialize"><![CDATA[
 ]]></method>
@@ -40,7 +40,13 @@
     <data-sources>
         <script-data-source name="ACL" id="838" extends="WFApp_library.ACL"/>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Comment Data Source" id="839"
- extends="WFApp_library.Comment Data Source"/>
+ extends="WFApp_library.Comment Data Source">
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:8433/workflow</property>
+            <property name="odaUser">wfapp</property>
+            <property name="odaIsolationMode">serializable</property>
+            <encrypted-property name="odaPassword" encryptionID="jce">38bf60bc5cb36729</encrypted-property>
+        </oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="WFProgress" id="8">
@@ -91,12 +97,6 @@ order;</expression>
                     <text-property name="heading">Content</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">cDate</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">cDate</text-property>
-                    <text-property name="heading">cDate</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">cUser</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">cUser</text-property>
@@ -119,6 +119,12 @@ order;</expression>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">shortContent</text-property>
                     <text-property name="heading">shortContent</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cDate</text-property>
+                    <text-property name="heading">cDate</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">sortOrder</property>
@@ -149,28 +155,28 @@ order;</expression>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">cDate</property>
-                        <property name="dataType">date-time</property>
-                    </structure>
-                    <structure>
-                        <property name="position">5</property>
                         <property name="name">cUser</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">5</property>
                         <property name="name">FullReportName</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">6</property>
                         <property name="name">Status</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">8</property>
+                        <property name="position">7</property>
                         <property name="name">shortContent</property>
                         <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">cDate</property>
+                        <property name="dataType">date-time</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
@@ -209,43 +215,43 @@ order;</expression>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">cDate</property>
-                    <property name="nativeName">cDate</property>
-                    <property name="dataType">date-time</property>
-                    <property name="nativeDataType">93</property>
-                </structure>
-                <structure>
-                    <property name="position">5</property>
                     <property name="name">cUser</property>
                     <property name="nativeName">cUser</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">5</property>
                     <property name="name">FullReportName</property>
                     <property name="nativeName">FullReportName</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">7</property>
+                    <property name="position">6</property>
                     <property name="name">Status</property>
                     <property name="nativeName">Status</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">8</property>
+                    <property name="position">7</property>
                     <property name="name">shortContent</property>
                     <property name="nativeName">shortContent</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">cDate</property>
+                    <property name="nativeName">cDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select a.*
 from comments a
-where cDate = (select max(cDate) from comments b where b.FullReportName=a.FullReportName and b.Status!='Comment' and b.cKey=a.cKey);
+where "cDate" = (select max("cDate") from comments b where b."FullReportName"=a."FullReportName" and b."Status"!='Comment' and b."cKey"=a."cKey");
 
 ]]></xml-property>
         </oda-data-set>
@@ -325,13 +331,6 @@ curPos = 0;]]></method>
                     <text-property name="heading">Content</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">cDate</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">cDate</text-property>
-                    <property name="onColumnLayout">false</property>
-                    <text-property name="heading">cDate</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">cUser</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">cUser</text-property>
@@ -357,6 +356,13 @@ curPos = 0;]]></method>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">shortContent</text-property>
                     <text-property name="heading">shortContent</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cDate</text-property>
+                    <property name="onColumnLayout">false</property>
+                    <text-property name="heading">cDate</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">StepDuration</property>
@@ -396,28 +402,28 @@ curPos = 0;]]></method>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">cDate</property>
-                        <property name="dataType">date-time</property>
-                    </structure>
-                    <structure>
-                        <property name="position">5</property>
                         <property name="name">cUser</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">5</property>
                         <property name="name">FullReportName</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">6</property>
                         <property name="name">Status</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">8</property>
+                        <property name="position">7</property>
                         <property name="name">shortContent</property>
                         <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">cDate</property>
+                        <property name="dataType">date-time</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
@@ -458,43 +464,43 @@ reportContext.setPersistentGlobalVariable("status", "");]]></method>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">cDate</property>
-                    <property name="nativeName">cDate</property>
-                    <property name="dataType">date-time</property>
-                    <property name="nativeDataType">93</property>
-                </structure>
-                <structure>
-                    <property name="position">5</property>
                     <property name="name">cUser</property>
                     <property name="nativeName">cUser</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">5</property>
                     <property name="name">FullReportName</property>
                     <property name="nativeName">FullReportName</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">7</property>
+                    <property name="position">6</property>
                     <property name="name">Status</property>
                     <property name="nativeName">Status</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">8</property>
+                    <property name="position">7</property>
                     <property name="name">shortContent</property>
                     <property name="nativeName">shortContent</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">cDate</property>
+                    <property name="nativeName">cDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select *
 from comments
-order by comments.cKey,comments.cDate]]></xml-property>
+order by "cKey","cDate"]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -689,6 +695,550 @@ order by comments.cKey,comments.cDate]]></xml-property>
             <property name="borderTopWidth">1pt</property>
         </style>
     </styles>
+    <themes>
+        <report-item-theme type="Chart" name="Progress Chart" id="840">
+            <xml-property name="customValues"><![CDATA[<type>1</type><ActuateChart version="2.6.1">
+ <ChartWithAxes version="2.6.1" type="Line Chart" subType="Overlay" script="&amp;#10;/**&amp;#10; * Called before drawing each datapoint graphical representation or marker.&amp;#10; * &amp;#10; * @param dph&amp;#10; *            DataPointHints&amp;#10; * @param fill&amp;#10; *            Fill&amp;#10; * @param icsc&amp;#10; *            IChartScriptContext&amp;#10; */&amp;#10;&amp;#10;function beforeDrawDataPoint( dph, fill, icsc )&amp;#10;{&amp;#10;&amp;#10; &amp;#10; var cat = dph.getSeriesDisplayValue(); &amp;#10; if (cat == &amp;quot;Submitted for Review&amp;quot;)&amp;#10;   fill.set(0,0,128); //Blue&amp;#10;&amp;#10; else if(cat == &amp;quot;To Be Approved&amp;quot;)&amp;#10;   fill.set(255,204,0); //Yellow&amp;#10;&amp;#10; else if(cat == &amp;quot;Rejected&amp;quot;)&amp;#10;   fill.set(255,0,0); //Red&amp;#10;&amp;#10; else if(cat == &amp;quot;Approved&amp;quot;)&amp;#10;   fill.set(0,128,0); //Green&amp;#10;&amp;#10; else if(cat == &amp;quot;Comment&amp;quot;)&amp;#10;   fill.set(255,255,255); //White&amp;#10;&amp;#10;&amp;#10;}&amp;#10;&amp;#10;&amp;#10;&amp;#10;/**&amp;#10; * Called before generation of chart model to GeneratedChartState.&amp;#10; * &amp;#10; * @param chart&amp;#10; *            Chart&amp;#10; * @param icsc&amp;#10; *            IChartScriptContext&amp;#10; */&amp;#10;&amp;#10;function beforeGeneration( chart, icsc )&amp;#10;{&amp;#10; &amp;#10; xAxis = chart.getBaseAxes()[0];&amp;#10; xAxis.getScale().setMax(Packages.org.eclipse.birt.chart.model.data.impl.NumberDataElementImpl.create(nmax));&amp;#10;}&amp;#10;&amp;#10;/**&amp;#10; * Called after populating the series dataset.&amp;#10; * &amp;#10; * @param series&amp;#10; *            Series&amp;#10; * @param dataSet&amp;#10; *            DataSet&amp;#10; * @param icsc&amp;#10; *            IChartScriptContext&amp;#10; */&amp;#10;&amp;#10;function afterDataSetFilled( series, dataSet, icsc )&amp;#10;{&amp;#10;&amp;#10;var list = series.dataSet.getValues();&amp;#10;nmax = list.length;&amp;#10;&amp;#10;}&amp;#10;" reverseCategory="false">
+  <block>
+   <children _type="TitleBlock" anchor="4" visible="false">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <cursor type="0"/>
+    <label>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+   </children>
+   <children _type="Plot" stretch="2" horizontalSpacing="0" verticalSpacing="0">
+    <insets _body="0.0,2.0,0.0,0.0"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+     <insets _body="0.0,0.0,0.0,0.0"/>
+    </clientArea>
+   </children>
+   <children _type="Legend" visible="false" itemType="1">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <cursor type="0"/>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+    <separator>
+     <color _nil="1"/>
+    </separator>
+    <title>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+   </children>
+   <bounds _body="0.0,0.0,572.25,286.125"/>
+   <insets _body="0.0,5.0,0.0,5.0"/>
+   <outline visible="false">
+    <color _nil="1"/>
+   </outline>
+   <cursor type="0"/>
+  </block>
+  <extendedProperties name="enable.area.alt" value="false"/>
+  <extendedProperties name="enable.drill.category" value="true"/>
+  <extendedProperties name="enable.drill.series" value="true"/>
+  <extendedProperties name="jschart.client.script" value="/**&amp;#13;&amp;#10; * Called before series instance is rendered.&amp;#13;&amp;#10; *&amp;#13;&amp;#10; * @param series&amp;#13;&amp;#10; *            series instance&amp;#13;&amp;#10; * @param  seriesOptions&amp;#13;&amp;#10; *             series options&amp;#13;&amp;#10; * @param  chart&amp;#13;&amp;#10; *             chart instance&amp;#13;&amp;#10; * @param  seriesIndex&amp;#13;&amp;#10; *             series index&amp;#13;&amp;#10; */&amp;#13;&amp;#10;beforeDrawSeries: function(series, seriesOptions, chart, seriesIndex)&amp;#13;&amp;#10;{&amp;#13;&amp;#10;    if (seriesOptions.name == &amp;quot;Submitted for Review&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#6D65FF&amp;quot;; //Blue&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;To Be Approved&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#F8E356&amp;quot;; //Yellow&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;Rejected&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#F59D4C&amp;quot;; //Red&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;Approved&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#55CC7D&amp;quot;; //Green&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;Comment&amp;quot;) {&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#FFFFFF&amp;quot;; //White&amp;#13;&amp;#10;            seriesOptions.marker.lineColor = &amp;quot;#000000&amp;quot;;&amp;#13;&amp;#10;            seriesOptions.marker.lineWidth = .5;&amp;#13;&amp;#10;    }&amp;#13;&amp;#10;&amp;#13;&amp;#10;},&amp;#13;&amp;#10;&amp;#13;&amp;#10;/**&amp;#13;&amp;#10; * Called before chart instance is rendered.&amp;#13;&amp;#10; *&amp;#13;&amp;#10; * @param options&amp;#13;&amp;#10; *            chart options&amp;#13;&amp;#10; * @param  chart&amp;#13;&amp;#10; *             chart instance&amp;#13;&amp;#10; */&amp;#13;&amp;#10;beforeRendering: function(options, chart)&amp;#13;&amp;#10;{&amp;#13;&amp;#10;    options.chart.spacingTop = -20;&amp;#13;&amp;#10;    options.chart.spacingLeft = 5;&amp;#13;&amp;#10;    options.chart.spacingRight = 5;&amp;#13;&amp;#10;    options.chart.spacingBottom = 0;&amp;#13;&amp;#10;&amp;#13;&amp;#10;},&amp;#13;&amp;#10;&amp;#13;&amp;#10;&amp;#13;&amp;#10;&amp;#13;&amp;#10;/**&amp;#13;&amp;#10; * Called after chart instance is rendered.&amp;#13;&amp;#10; *&amp;#13;&amp;#10; * @param chart&amp;#13;&amp;#10; *            chart instance&amp;#13;&amp;#10; */&amp;#13;&amp;#10;afterRendering: function(chart)&amp;#13;&amp;#10;{&amp;#13;&amp;#10;    chart.getCore().yAxis[0].addPlotLine({&amp;#13;&amp;#10;        value:  1,&amp;#13;&amp;#10;        color: &amp;#039;black&amp;#039;,&amp;#13;&amp;#10;        width: 1,&amp;#13;&amp;#10;        id: &amp;#039;path&amp;#039;,&amp;#13;&amp;#10;        zIndex: 0&amp;#13;&amp;#10;    });&amp;#13;&amp;#10;},"/>
+  <extendedProperties name="jschart.series.shadow" value="false"/>
+  <extendedProperties name="jschart.animation" value="false"/>
+  <extendedProperties name="jschart.scroll" value="false"/>
+  <interactivity enable="false"/>
+  <emptyMessage visible="false">
+   <caption value="This chart contains no data."/>
+   <background _body=",64,127,127,127"/>
+   <outline>
+    <color _body=",128,127,127,127"/>
+   </outline>
+  </emptyMessage>
+  <axes type="0" categoryAxis="false">
+   <title visible="false">
+    <caption value=""/>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </title>
+   <associatedAxes primaryAxis="true" percent="false">
+    <title visible="false">
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition="">
+      <grouping/>
+     </query>
+     <seriesPalette>
+      <entries _body=",255,80,166,218"/>
+      <entries _body=",255,242,88,106"/>
+      <entries _body=",255,232,172,57"/>
+      <entries _body=",255,255,102,0"/>
+      <entries _body=",255,64,128,128"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,170,85,85"/>
+      <entries _body=",255,128,128,0"/>
+      <entries _body=",255,192,192,192"/>
+      <entries _body=",255,255,255,128"/>
+      <entries _body=",255,128,192,128"/>
+      <entries _body=",255,7,146,94"/>
+      <entries _body=",255,0,128,255"/>
+      <entries _body=",255,255,128,192"/>
+      <entries _body=",255,0,255,255"/>
+      <entries _body=",255,255,128,128"/>
+      <entries _body=",255,0,128,192"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,255,0,255"/>
+      <entries _body=",255,128,64,64"/>
+      <entries _body=",255,255,128,64"/>
+      <entries _body=",255,80,240,120"/>
+      <entries _body=",255,0,64,128"/>
+      <entries _body=",255,128,0,64"/>
+      <entries _body=",255,255,0,128"/>
+      <entries _body=",255,128,128,64"/>
+      <entries _body=",255,128,128,128"/>
+      <entries _body=",255,255,128,255"/>
+      <entries _body=",255,0,64,0"/>
+      <entries _body=",255,0,0,0"/>
+      <entries _body=",255,255,255,255"/>
+      <entries _body=",255,255,128,0"/>
+     </seriesPalette>
+     <series _type="LineSeries" seriesIdentifier="Submitted for Review" stacked="false" translucent="false">
+      <label visible="false">
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataDefinition definition="if (row[&amp;quot;Status&amp;quot;]==&amp;quot;Submitted for Review&amp;quot;) &amp;#13;&amp;#10; 1&amp;#13;&amp;#10;else&amp;#13;&amp;#10; null">
+       <grouping/>
+      </dataDefinition>
+      <curveFitting _nil="1"/>
+      <markers visible="true">
+       <outline/>
+      </markers>
+      <lineAttributes visible="false">
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="BarSeries" seriesIdentifier="" riser="0">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+     </series>
+     <series _type="AreaSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="PieSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <title>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </title>
+     </series>
+     <series _type="DialSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dial>
+       <lineAttributes>
+        <color _nil="1"/>
+       </lineAttributes>
+       <majorGrid>
+        <lineAttributes>
+         <color _nil="1"/>
+        </lineAttributes>
+        <tickAttributes>
+         <color _nil="1"/>
+        </tickAttributes>
+       </majorGrid>
+       <minorGrid>
+        <lineAttributes>
+         <color _nil="1"/>
+        </lineAttributes>
+        <tickAttributes>
+         <color _nil="1"/>
+        </tickAttributes>
+       </minorGrid>
+       <label>
+        <background _nil="1"/>
+        <outline>
+         <color _nil="1"/>
+        </outline>
+       </label>
+      </dial>
+      <needle>
+       <lineAttributes>
+        <color _nil="1"/>
+       </lineAttributes>
+      </needle>
+     </series>
+     <series _type="ScatterSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="StockSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+     </series>
+     <series _type="BubbleSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+      <accLineAttributes>
+       <color _nil="1"/>
+      </accLineAttributes>
+     </series>
+     <series _type="DifferenceSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+      <negativeMarkers>
+       <outline/>
+      </negativeMarkers>
+      <negativeLineAttributes>
+       <color _nil="1"/>
+      </negativeLineAttributes>
+     </series>
+     <series _type="GanttSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <connectionLine>
+       <color _nil="1"/>
+      </connectionLine>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+      <decorationLabel>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </decorationLabel>
+     </series>
+     <series _type="RadarSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font>
+         <alignment/>
+        </font>
+       </caption>
+       <outline/>
+       <insets/>
+      </label>
+      <dataPoint/>
+      <marker>
+       <outline/>
+      </marker>
+      <lineAttributes/>
+      <webLineAttributes/>
+      <webLabel>
+       <caption>
+        <font>
+         <alignment/>
+        </font>
+       </caption>
+       <outline/>
+       <insets/>
+      </webLabel>
+      <catLabel>
+       <caption>
+        <font>
+         <alignment/>
+        </font>
+       </caption>
+       <outline/>
+       <insets/>
+      </catLabel>
+     </series>
+     <grouping _nil="1"/>
+    </seriesDefinitions>
+    <lineAttributes visible="false">
+     <color _nil="1"/>
+    </lineAttributes>
+    <label visible="false">
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <scale autoExpand="true">
+     <min _type="NumberDataElement" value="0.0"/>
+    </scale>
+    <origin type="0">
+     <value _nil="1"/>
+    </origin>
+    <cursor type="0"/>
+   </associatedAxes>
+   <ancillaryAxes>
+    <title>
+     <caption value="Z-Axis Title"/>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition=""/>
+     <seriesPalette>
+      <entries _body=",255,80,166,218"/>
+      <entries _body=",255,242,88,106"/>
+      <entries _body=",255,232,172,57"/>
+      <entries _body=",255,255,102,0"/>
+      <entries _body=",255,64,128,128"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,170,85,85"/>
+      <entries _body=",255,128,128,0"/>
+      <entries _body=",255,192,192,192"/>
+      <entries _body=",255,255,255,128"/>
+      <entries _body=",255,128,192,128"/>
+      <entries _body=",255,7,146,94"/>
+      <entries _body=",255,0,128,255"/>
+      <entries _body=",255,255,128,192"/>
+      <entries _body=",255,0,255,255"/>
+      <entries _body=",255,255,128,128"/>
+      <entries _body=",255,0,128,192"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,255,0,255"/>
+      <entries _body=",255,128,64,64"/>
+      <entries _body=",255,255,128,64"/>
+      <entries _body=",255,80,240,120"/>
+      <entries _body=",255,0,64,128"/>
+      <entries _body=",255,128,0,64"/>
+      <entries _body=",255,255,0,128"/>
+      <entries _body=",255,128,128,64"/>
+      <entries _body=",255,128,128,128"/>
+      <entries _body=",255,255,128,255"/>
+      <entries _body=",255,0,64,0"/>
+      <entries _body=",255,0,0,0"/>
+      <entries _body=",255,255,255,255"/>
+      <entries _body=",255,255,128,0"/>
+     </seriesPalette>
+     <series seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+     </series>
+    </seriesDefinitions>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <label>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <origin>
+     <value _type="NumberDataElement" value="0.0"/>
+    </origin>
+   </ancillaryAxes>
+   <seriesDefinitions>
+    <query definition=""/>
+    <seriesPalette>
+     <entries _body=",255,80,166,218"/>
+     <entries _body=",255,242,88,106"/>
+     <entries _body=",255,232,172,57"/>
+     <entries _body=",255,255,102,0"/>
+     <entries _body=",255,64,128,128"/>
+     <entries _body=",255,128,128,192"/>
+     <entries _body=",255,170,85,85"/>
+     <entries _body=",255,128,128,0"/>
+     <entries _body=",255,192,192,192"/>
+     <entries _body=",255,255,255,128"/>
+     <entries _body=",255,128,192,128"/>
+     <entries _body=",255,7,146,94"/>
+     <entries _body=",255,0,128,255"/>
+     <entries _body=",255,255,128,192"/>
+     <entries _body=",255,0,255,255"/>
+     <entries _body=",255,255,128,128"/>
+     <entries _body=",255,0,128,192"/>
+     <entries _body=",255,128,128,192"/>
+     <entries _body=",255,255,0,255"/>
+     <entries _body=",255,128,64,64"/>
+     <entries _body=",255,255,128,64"/>
+     <entries _body=",255,80,240,120"/>
+     <entries _body=",255,0,64,128"/>
+     <entries _body=",255,128,0,64"/>
+     <entries _body=",255,255,0,128"/>
+     <entries _body=",255,128,128,64"/>
+     <entries _body=",255,128,128,128"/>
+     <entries _body=",255,255,128,255"/>
+     <entries _body=",255,0,64,0"/>
+     <entries _body=",255,0,0,0"/>
+     <entries _body=",255,255,255,255"/>
+     <entries _body=",255,255,128,0"/>
+    </seriesPalette>
+    <series seriesIdentifier="">
+     <label>
+      <background _nil="1"/>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+     </label>
+     <dataDefinition definition="row[&amp;quot;rowNum&amp;quot;]"/>
+     <curveFitting _nil="1"/>
+    </series>
+    <grouping _nil="1"/>
+   </seriesDefinitions>
+   <lineAttributes visible="false">
+    <color _nil="1"/>
+   </lineAttributes>
+   <label visible="false">
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </label>
+   <majorGrid>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes>
+     <color _nil="1"/>
+    </tickAttributes>
+   </majorGrid>
+   <minorGrid>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes>
+     <color _nil="1"/>
+    </tickAttributes>
+   </minorGrid>
+   <scale showOutside="false" autoExpand="true">
+    <min _type="NumberDataElement" value="0.0"/>
+   </scale>
+   <origin type="0">
+    <value _nil="1"/>
+   </origin>
+   <cursor type="0"/>
+  </axes>
+  <rotation>
+   <angles/>
+  </rotation>
+ </ChartWithAxes>
+</ActuateChart>]]></xml-property>
+        </report-item-theme>
+    </themes>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="orientation">landscape</property>
@@ -717,13 +1267,10 @@ order by comments.cKey,comments.cDate]]></xml-property>
                         <property name="width">11.614583333333334in</property>
                         <expression name="bookmark" type="javascript">"Top Bar"</expression>
                         <column id="166">
-                            <property name="width">4.072916666666667in</property>
+                            <property name="width">10%</property>
                         </column>
                         <column id="167">
-                            <property name="width">5.5in</property>
-                        </column>
-                        <column id="794">
-                            <property name="width">2.0416666666666665in</property>
+                            <property name="width">90%</property>
                         </column>
                         <row id="168">
                             <property name="verticalAlign">top</property>
@@ -832,6 +1379,7 @@ order by comments.cKey,comments.cDate]]></xml-property>
                                     <text-property name="content"><![CDATA[Work Flow Role: <VALUE-OF>reportContext.getPersistentGlobalVariable("Role")</VALUE-OF>]]></text-property>
                                 </text>
                                 <text id="837">
+                                    <property name="display">inline</property>
                                     <property name="contentType">html</property>
                                     <text-property name="content"><![CDATA[<script>
 //Functions for flashing browser title in the task bar.
@@ -865,537 +1413,601 @@ function stopBlink() {
                                 </text>
                             </cell>
                             <cell id="170">
+                                <property name="colSpan">1</property>
+                                <property name="rowSpan">1</property>
                                 <property name="textAlign">center</property>
-                                <extended-item extensionName="Chart" id="164">
-                                    <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
- <ChartWithAxes version="2.6.1" type="Bar Chart" subType="Side-by-side" unitSpacing="10.0">
-  <block>
-   <children _type="TitleBlock" visible="false">
-    <outline>
-     <color _nil="1"/>
-    </outline>
-    <label>
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </label>
-   </children>
-   <children _type="Plot">
-    <outline>
-     <color _nil="1"/>
-    </outline>
-    <clientArea>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </clientArea>
-   </children>
-   <children _type="Legend" visible="false" orientation="0" position="1" itemType="1">
-    <outline>
-     <color _nil="1"/>
-    </outline>
-    <cursor type="0"/>
-    <clientArea>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </clientArea>
-    <separator>
-     <color _nil="1"/>
-    </separator>
-    <title>
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </title>
-   </children>
-   <bounds _body="0.0,0.0,684.0,153.0"/>
-   <insets _body="0.0,0.0,0.0,0.0"/>
-   <outline>
-    <color _nil="1"/>
-   </outline>
-  </block>
-  <extendedProperties name="enable.area.alt" value="false"/>
-  <extendedProperties name="enable.drill.category" value="true"/>
-  <extendedProperties name="enable.drill.series" value="true"/>
-  <extendedProperties name="jschart.glass.style" value="true"/>
-  <extendedProperties name="jschart.animation" value="false"/>
-  <extendedProperties name="jschart.zoom" value="y"/>
-  <extendedProperties name="jschart.series.shadow" value="false"/>
-  <extendedProperties name="jschart.client.script" value="/**&#13;&#10; * Called before data point instance is rendered.&#13;&#10; *&#13;&#10; * @param point&#13;&#10; *            data point instance&#13;&#10; * @param  pointOptions&#13;&#10; *             data point options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; * @param  seriesIndex&#13;&#10; *             series index&#13;&#10; * @param  pointIndex&#13;&#10; *             data point index&#13;&#10; */&#13;&#10;beforeDrawDataPoint: function(point, pointOptions, chart, seriesIndex, pointIndex)&#13;&#10;{&#13;&#10;    switch (point.category) {&#13;&#10;        case &quot;Submitted for Review&quot;:&#13;&#10;            pointOptions.color = &quot;#000080&quot;; //Blue&#13;&#10;            break;&#13;&#10;        case &quot;To Be Approved&quot;:&#13;&#10;            pointOptions.color = &quot;#FFCC00&quot;; //Yellow&#13;&#10;            break;&#13;&#10;        case &quot;Rejected&quot;:&#13;&#10;            pointOptions.color = &quot;#FF0000&quot;; //Red&#13;&#10;            break;&#13;&#10;        case &quot;Approved&quot;:&#13;&#10;            pointOptions.color = &quot;#008000&quot;; //Green&#13;&#10;            break;&#13;&#10;    }&#13;&#10;},"/>
-  <sampleData>
-   <baseSampleData dataSetRepresentation="A, B, C"/>
-   <orthogonalSampleData dataSetRepresentation="5,4,12" seriesDefinitionIndex="0"/>
-  </sampleData>
-  <emptyMessage>
-   <caption value="This chart contains no data."/>
-   <background _body=",64,127,127,127"/>
-   <outline>
-    <color _body=",128,127,127,127"/>
-   </outline>
-  </emptyMessage>
-  <axes>
-   <title>
-    <background _nil="1"/>
-    <outline>
-     <color _nil="1"/>
-    </outline>
-   </title>
-   <associatedAxes primaryAxis="true">
-    <title>
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </title>
-    <seriesDefinitions>
-     <query definition="">
-      <grouping/>
-     </query>
-     <seriesPalette>
-      <entries _body=",255,0,0,128"/>
-      <entries _body=",255,255,204,0"/>
-      <entries _body=",255,255,0,0"/>
-      <entries _body=",255,0,128,0"/>
-      <entries _body=",255,255,102,0"/>
-      <entries _body=",255,128,128,192"/>
-      <entries _body=",255,170,85,85"/>
-      <entries _body=",255,128,128,0"/>
-      <entries _body=",255,192,192,192"/>
-      <entries _body=",255,255,255,128"/>
-      <entries _body=",255,128,192,128"/>
-      <entries _body=",255,7,146,94"/>
-      <entries _body=",255,0,128,255"/>
-      <entries _body=",255,255,128,192"/>
-      <entries _body=",255,0,255,255"/>
-      <entries _body=",255,255,128,128"/>
-      <entries _body=",255,0,128,192"/>
-      <entries _body=",255,128,128,192"/>
-      <entries _body=",255,255,0,255"/>
-      <entries _body=",255,128,64,64"/>
-      <entries _body=",255,255,128,64"/>
-      <entries _body=",255,80,240,120"/>
-      <entries _body=",255,0,64,128"/>
-      <entries _body=",255,128,0,64"/>
-      <entries _body=",255,255,0,128"/>
-      <entries _body=",255,128,128,64"/>
-      <entries _body=",255,128,128,128"/>
-      <entries _body=",255,255,128,255"/>
-      <entries _body=",255,0,64,0"/>
-      <entries _body=",255,0,0,0"/>
-      <entries _body=",255,255,255,255"/>
-      <entries _body=",255,255,128,0"/>
-     </seriesPalette>
-     <series _type="BarSeries" seriesIdentifier="in Queue" labelPosition="4" stacked="true" riser="0">
-      <label visible="false">
-       <background _nil="1"/>
-       <outline>
-        <color _nil="1"/>
-       </outline>
-      </label>
-      <dataDefinition definition="row[&quot;Status&quot;]">
-       <grouping enabled="true" aggregateExpression="Count"/>
-      </dataDefinition>
-      <dataPoint>
-       <components type="2"/>
-      </dataPoint>
-      <triggers condition="6">
-       <action type="1">
-        <value _type="TooltipValue" text="" delay="200"/>
-       </action>
-      </triggers>
-      <curveFitting _nil="1"/>
-     </series>
-     <grouping _nil="1"/>
-    </seriesDefinitions>
-    <lineAttributes>
-     <color _nil="1"/>
-    </lineAttributes>
-    <label>
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </label>
-    <majorGrid>
-     <lineAttributes>
-      <color _nil="1"/>
-     </lineAttributes>
-     <tickAttributes>
-      <color _nil="1"/>
-     </tickAttributes>
-    </majorGrid>
-    <minorGrid>
-     <lineAttributes>
-      <color _nil="1"/>
-     </lineAttributes>
-     <tickAttributes>
-      <color _nil="1"/>
-     </tickAttributes>
-    </minorGrid>
-    <scale step="1.0"/>
-    <origin>
-     <value _nil="1"/>
-    </origin>
-   </associatedAxes>
-   <seriesDefinitions sorting="0" sortStrength="-1">
-    <query definition=""/>
-    <seriesPalette>
-     <entries _body=",255,0,0,128"/>
-     <entries _body=",255,255,204,0"/>
-     <entries _body=",255,255,0,0"/>
-     <entries _body=",255,0,128,0"/>
-     <entries _body=",255,255,102,0"/>
-     <entries _body=",255,128,128,192"/>
-     <entries _body=",255,170,85,85"/>
-     <entries _body=",255,128,128,0"/>
-     <entries _body=",255,192,192,192"/>
-     <entries _body=",255,255,255,128"/>
-     <entries _body=",255,128,192,128"/>
-     <entries _body=",255,7,146,94"/>
-     <entries _body=",255,0,128,255"/>
-     <entries _body=",255,255,128,192"/>
-     <entries _body=",255,0,255,255"/>
-     <entries _body=",255,255,128,128"/>
-     <entries _body=",255,0,128,192"/>
-     <entries _body=",255,128,128,192"/>
-     <entries _body=",255,255,0,255"/>
-     <entries _body=",255,128,64,64"/>
-     <entries _body=",255,255,128,64"/>
-     <entries _body=",255,80,240,120"/>
-     <entries _body=",255,0,64,128"/>
-     <entries _body=",255,128,0,64"/>
-     <entries _body=",255,255,0,128"/>
-     <entries _body=",255,128,128,64"/>
-     <entries _body=",255,128,128,128"/>
-     <entries _body=",255,255,128,255"/>
-     <entries _body=",255,0,64,0"/>
-     <entries _body=",255,0,0,0"/>
-     <entries _body=",255,255,255,255"/>
-     <entries _body=",255,255,128,0"/>
-    </seriesPalette>
-    <series seriesIdentifier="">
-     <label>
-      <background _nil="1"/>
-      <outline>
-       <color _nil="1"/>
-      </outline>
-     </label>
-     <dataDefinition definition="row[&quot;Status&quot;]"/>
-     <curveFitting _nil="1"/>
-    </series>
-    <grouping enabled="true"/>
-    <sortKey definition="row[&quot;sortOrder&quot;]"/>
-   </seriesDefinitions>
-   <lineAttributes>
-    <color _nil="1"/>
-   </lineAttributes>
-   <label visible="false">
-    <background _nil="1"/>
-    <outline>
-     <color _nil="1"/>
-    </outline>
-   </label>
-   <majorGrid>
-    <lineAttributes>
-     <color _nil="1"/>
-    </lineAttributes>
-    <tickAttributes>
-     <color _nil="1"/>
-    </tickAttributes>
-   </majorGrid>
-   <minorGrid>
-    <lineAttributes>
-     <color _nil="1"/>
-    </lineAttributes>
-    <tickAttributes>
-     <color _nil="1"/>
-    </tickAttributes>
-   </minorGrid>
-   <origin>
-    <value _nil="1"/>
-   </origin>
-  </axes>
-  <rotation>
-   <angles/>
-  </rotation>
- </ChartWithAxes>
-</ActuateChart>
-]]></xml-property>
-                                    <property name="outputFormat">JS</property>
-                                    <property name="inheritColumns">false</property>
-                                    <property name="display">inline</property>
-                                    <property name="height">1.0833333333333333in</property>
-                                    <property name="width">5.4375in</property>
-                                    <property name="dataSet">WFProgress</property>
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">ID</property>
-                                            <expression name="expression" type="javascript">dataSetRow["ID"]</expression>
-                                            <property name="dataType">integer</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">cKey</property>
-                                            <expression name="expression" type="javascript">dataSetRow["cKey"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">Content</property>
-                                            <expression name="expression" type="javascript">dataSetRow["Content"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">cDate</property>
-                                            <expression name="expression" type="javascript">dataSetRow["cDate"]</expression>
-                                            <property name="dataType">date-time</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">cUser</property>
-                                            <expression name="expression" type="javascript">dataSetRow["cUser"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">FullReportName</property>
-                                            <expression name="expression" type="javascript">dataSetRow["FullReportName"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">Status</property>
-                                            <expression name="expression" type="javascript">dataSetRow["Status"]</expression>
-                                            <property name="dataType">string</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">sortOrder</property>
-                                            <expression name="expression">dataSetRow["sortOrder"]</expression>
-                                            <property name="dataType">integer</property>
-                                        </structure>
-                                    </list-property>
-                                    <property name="theme">WFApp_library.Modern</property>
-                                </extended-item>
-                            </cell>
-                            <cell id="793">
-                                <property name="textAlign">right</property>
-                                <grid id="764">
-                                    <property name="marginTop">0pt</property>
-                                    <property name="paddingTop">0pt</property>
-                                    <property name="paddingLeft">0pt</property>
-                                    <property name="paddingBottom">0pt</property>
-                                    <property name="paddingRight">0pt</property>
-                                    <property name="verticalAlign">middle</property>
-                                    <property name="display">inline</property>
-                                    <property name="width">1.5208333333333333in</property>
-                                    <column id="765">
-                                        <property name="width">0.20833333333333334in</property>
+                                <grid id="842">
+                                    <column id="843">
+                                        <property name="width">1in</property>
                                     </column>
-                                    <column id="766">
-                                        <property name="width">1.3125in</property>
+                                    <column id="905">
+                                        <property name="width">0.1in</property>
                                     </column>
-                                    <row id="770">
-                                        <property name="paddingTop">0pt</property>
-                                        <property name="paddingLeft">0pt</property>
-                                        <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">0pt</property>
-                                        <property name="height">0.2in</property>
-                                        <cell id="771">
+                                    <column id="844">
+                                        <property name="width">1in</property>
+                                    </column>
+                                    <column id="908">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="845">
+                                        <property name="width">1in</property>
+                                    </column>
+                                    <column id="911">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="846">
+                                        <property name="width">1in</property>
+                                    </column>
+                                    <column id="914">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="847">
+                                        <property name="width">1in</property>
+                                    </column>
+                                    <row id="848">
+                                        <cell id="849">
                                             <property name="style">SubmittedForReview</property>
-                                            <property name="borderBottomColor">#000080</property>
-                                            <property name="borderBottomStyle">solid</property>
-                                            <property name="borderBottomWidth">thin</property>
-                                            <property name="borderLeftColor">#000080</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
                                             <property name="borderLeftStyle">solid</property>
-                                            <property name="borderLeftWidth">thin</property>
-                                            <property name="borderRightColor">#000080</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
                                             <property name="borderRightStyle">solid</property>
-                                            <property name="borderRightWidth">thin</property>
-                                            <property name="borderTopColor">#000080</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <property name="borderTopColor">#C0C0C0</property>
                                             <property name="borderTopStyle">solid</property>
-                                            <property name="borderTopWidth">thin</property>
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
+                                            <property name="borderTopWidth">medium</property>
+                                            <table id="861">
+                                                <property name="style">SubmittedForReview</property>
+                                                <property name="showIfBlank">true</property>
+                                                <property name="dataSet">WFProgress</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Status</property>
+                                                        <text-property name="displayName">Status</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Status"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Status Count</property>
+                                                        <property name="dataType">integer</property>
+                                                        <property name="aggregateFunction">COUNT</property>
+                                                        <list-property name="arguments">
+                                                            <structure>
+                                                                <property name="name">Expression</property>
+                                                                <expression name="value" type="javascript">row["Status"]</expression>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="filter">
+                                                    <structure>
+                                                        <property name="operator">eq</property>
+                                                        <expression name="expr" type="javascript">row["Status"]</expression>
+                                                        <simple-property-list name="value1">
+                                                            <value type="javascript">"Submitted for Review"</value>
+                                                        </simple-property-list>
+                                                        <property name="updateAggregation">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="870"/>
+                                                <footer>
+                                                    <row id="938">
+                                                        <cell id="939">
+                                                            <text id="916">
+                                                                <property name="style">SubmittedForReview</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <property name="textAlign">center</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] != null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="contentType">auto</property>
+                                                                <text-property name="content"><![CDATA[0]]></text-property>
+                                                            </text>
+                                                            <data id="872">
+                                                                <property name="style">SubmittedForReview</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <structure name="numberFormat">
+                                                                    <property name="category">Fixed</property>
+                                                                    <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                                                </structure>
+                                                                <property name="textAlign">center</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] == null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="resultSetColumn">Status Count</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </footer>
+                                            </table>
                                         </cell>
-                                        <cell id="772">
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                            <property name="verticalAlign">middle</property>
-                                            <label id="776">
-                                                <property name="fontSize">8pt</property>
-                                                <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">2px</property>
-                                                <property name="paddingBottom">0pt</property>
-                                                <property name="paddingRight">0pt</property>
-                                                <property name="textAlign">left</property>
+                                        <cell id="903"/>
+                                        <cell id="850">
+                                            <property name="style">SubmitForApproval</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <property name="borderTopColor">#C0C0C0</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">medium</property>
+                                            <table id="883">
+                                                <property name="style">SubmitForApproval</property>
+                                                <property name="showIfBlank">true</property>
+                                                <property name="dataSet">WFProgress</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Status</property>
+                                                        <text-property name="displayName">Status</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Status"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Status Count</property>
+                                                        <property name="dataType">integer</property>
+                                                        <property name="aggregateFunction">COUNT</property>
+                                                        <list-property name="arguments">
+                                                            <structure>
+                                                                <property name="name">Expression</property>
+                                                                <expression name="value" type="javascript">row["Status"]</expression>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="filter">
+                                                    <structure>
+                                                        <property name="operator">eq</property>
+                                                        <expression name="expr" type="javascript">row["Status"]</expression>
+                                                        <simple-property-list name="value1">
+                                                            <value type="javascript">"To Be Approved"</value>
+                                                        </simple-property-list>
+                                                        <property name="updateAggregation">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="887"/>
+                                                <footer>
+                                                    <row id="936">
+                                                        <cell id="937">
+                                                            <text id="915">
+                                                                <property name="style">SubmitForApproval</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <property name="textAlign">center</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] != null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="contentType">auto</property>
+                                                                <text-property name="content"><![CDATA[0]]></text-property>
+                                                            </text>
+                                                            <data id="886">
+                                                                <property name="style">SubmitForApproval</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <structure name="numberFormat">
+                                                                    <property name="category">Fixed</property>
+                                                                    <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                                                </structure>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] == null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="resultSetColumn">Status Count</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                        <cell id="906"/>
+                                        <cell id="851">
+                                            <property name="style">Approve</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <property name="borderTopColor">#C0C0C0</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">medium</property>
+                                            <table id="888">
+                                                <property name="style">Approve</property>
+                                                <property name="showIfBlank">true</property>
+                                                <property name="dataSet">WFProgress</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Status</property>
+                                                        <text-property name="displayName">Status</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Status"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Status Count</property>
+                                                        <property name="dataType">integer</property>
+                                                        <property name="aggregateFunction">COUNT</property>
+                                                        <list-property name="arguments">
+                                                            <structure>
+                                                                <property name="name">Expression</property>
+                                                                <expression name="value" type="javascript">row["Status"]</expression>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="filter">
+                                                    <structure>
+                                                        <property name="operator">eq</property>
+                                                        <expression name="expr" type="javascript">row["Status"]</expression>
+                                                        <simple-property-list name="value1">
+                                                            <value type="javascript">"Approved"</value>
+                                                        </simple-property-list>
+                                                        <property name="updateAggregation">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="892"/>
+                                                <footer>
+                                                    <row id="934">
+                                                        <cell id="935">
+                                                            <text id="917">
+                                                                <property name="style">Approve</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <property name="textAlign">center</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] != null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="contentType">auto</property>
+                                                                <text-property name="content"><![CDATA[0]]></text-property>
+                                                            </text>
+                                                            <data id="891">
+                                                                <property name="style">Approve</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <structure name="numberFormat">
+                                                                    <property name="category">Fixed</property>
+                                                                    <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                                                </structure>
+                                                                <property name="textAlign">center</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] == null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="resultSetColumn">Status Count</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                        <cell id="909"/>
+                                        <cell id="852">
+                                            <property name="style">Reject</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <property name="borderTopColor">#C0C0C0</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">medium</property>
+                                            <table id="893">
+                                                <property name="style">Reject</property>
+                                                <property name="showIfBlank">true</property>
+                                                <property name="dataSet">WFProgress</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Status</property>
+                                                        <text-property name="displayName">Status</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Status"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Status Count</property>
+                                                        <property name="dataType">integer</property>
+                                                        <property name="aggregateFunction">COUNT</property>
+                                                        <list-property name="arguments">
+                                                            <structure>
+                                                                <property name="name">Expression</property>
+                                                                <expression name="value" type="javascript">row["Status"]</expression>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="filter">
+                                                    <structure>
+                                                        <property name="operator">eq</property>
+                                                        <expression name="expr" type="javascript">row["Status"]</expression>
+                                                        <simple-property-list name="value1">
+                                                            <value type="javascript">"Rejected"</value>
+                                                        </simple-property-list>
+                                                        <property name="updateAggregation">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="897"/>
+                                                <footer>
+                                                    <row id="932">
+                                                        <cell id="933">
+                                                            <text id="918">
+                                                                <property name="style">Reject</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <property name="textAlign">center</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] != null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="contentType">auto</property>
+                                                                <text-property name="content"><![CDATA[0]]></text-property>
+                                                            </text>
+                                                            <data id="896">
+                                                                <property name="style">Reject</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <structure name="numberFormat">
+                                                                    <property name="category">Fixed</property>
+                                                                    <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                                                </structure>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] == null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="resultSetColumn">Status Count</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                        <cell id="912"/>
+                                        <cell id="853">
+                                            <property name="style">Comment</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <property name="borderTopColor">#C0C0C0</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">medium</property>
+                                            <table id="898">
+                                                <property name="style">Comment</property>
+                                                <property name="showIfBlank">true</property>
+                                                <property name="dataSet">Comment Data Set</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Status</property>
+                                                        <text-property name="displayName">Status</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Status"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Status Count</property>
+                                                        <property name="dataType">integer</property>
+                                                        <property name="aggregateFunction">COUNT</property>
+                                                        <list-property name="arguments">
+                                                            <structure>
+                                                                <property name="name">Expression</property>
+                                                                <expression name="value" type="javascript">row["Status"]</expression>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="filter">
+                                                    <structure>
+                                                        <property name="operator">eq</property>
+                                                        <expression name="expr" type="javascript">row["Status"]</expression>
+                                                        <simple-property-list name="value1">
+                                                            <value type="javascript">"Comment"</value>
+                                                        </simple-property-list>
+                                                        <property name="updateAggregation">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="902">
+                                                    <property name="textAlign">right</property>
+                                                </column>
+                                                <footer>
+                                                    <row id="930">
+                                                        <cell id="931">
+                                                            <text id="919">
+                                                                <property name="style">Comment</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="display">block</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] != null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="contentType">auto</property>
+                                                                <text-property name="content"><![CDATA[0]]></text-property>
+                                                            </text>
+                                                            <data id="901">
+                                                                <property name="style">Comment</property>
+                                                                <property name="fontSize">18pt</property>
+                                                                <property name="fontWeight">bold</property>
+                                                                <property name="paddingTop">4pt</property>
+                                                                <structure name="numberFormat">
+                                                                    <property name="category">Fixed</property>
+                                                                    <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                                                </structure>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="showIfBlank">true</property>
+                                                                <list-property name="visibility">
+                                                                    <structure>
+                                                                        <property name="format">all</property>
+                                                                        <expression name="valueExpr" type="javascript">row["Status Count"] == null</expression>
+                                                                    </structure>
+                                                                </list-property>
+                                                                <property name="resultSetColumn">Status Count</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                    <row id="854">
+                                        <property name="verticalAlign">top</property>
+                                        <cell id="855">
+                                            <property name="style">SubmittedForReview</property>
+                                            <property name="borderBottomColor">#C0C0C0</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">medium</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <label id="860">
+                                                <property name="style">SubmittedForReview</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="paddingTop">4pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">4pt</property>
+                                                <property name="paddingRight">2pt</property>
+                                                <property name="textAlign">center</property>
+                                                <property name="whiteSpace">normal</property>
                                                 <text-property name="text">Submitted for Review</text-property>
                                             </label>
                                         </cell>
-                                    </row>
-                                    <row id="777">
-                                        <property name="paddingTop">0pt</property>
-                                        <property name="paddingLeft">0pt</property>
-                                        <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">0pt</property>
-                                        <property name="height">0.2in</property>
-                                        <cell id="778">
-                                            <property name="style">Reject</property>
-                                            <property name="borderBottomColor">#FF0000</property>
-                                            <property name="borderBottomStyle">solid</property>
-                                            <property name="borderBottomWidth">thin</property>
-                                            <property name="borderLeftColor">#FF0000</property>
-                                            <property name="borderLeftStyle">solid</property>
-                                            <property name="borderLeftWidth">thin</property>
-                                            <property name="borderRightColor">#FF0000</property>
-                                            <property name="borderRightStyle">solid</property>
-                                            <property name="borderRightWidth">thin</property>
-                                            <property name="borderTopColor">#FF0000</property>
-                                            <property name="borderTopStyle">solid</property>
-                                            <property name="borderTopWidth">thin</property>
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                        </cell>
-                                        <cell id="779">
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                            <property name="verticalAlign">middle</property>
-                                            <label id="784">
-                                                <property name="fontSize">8pt</property>
-                                                <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">2px</property>
-                                                <property name="paddingBottom">0pt</property>
-                                                <property name="paddingRight">0pt</property>
-                                                <property name="textAlign">left</property>
-                                                <text-property name="text">Rejected</text-property>
-                                            </label>
-                                        </cell>
-                                    </row>
-                                    <row id="781">
-                                        <property name="paddingTop">0pt</property>
-                                        <property name="paddingLeft">0pt</property>
-                                        <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">0pt</property>
-                                        <property name="height">0.2in</property>
-                                        <cell id="782">
+                                        <cell id="904"/>
+                                        <cell id="856">
                                             <property name="style">SubmitForApproval</property>
-                                            <property name="borderBottomColor">#FFCC00</property>
+                                            <property name="borderBottomColor">#C0C0C0</property>
                                             <property name="borderBottomStyle">solid</property>
-                                            <property name="borderBottomWidth">thin</property>
-                                            <property name="borderLeftColor">#FFCC00</property>
+                                            <property name="borderBottomWidth">medium</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
                                             <property name="borderLeftStyle">solid</property>
-                                            <property name="borderLeftWidth">thin</property>
-                                            <property name="borderRightColor">#FFCC00</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
                                             <property name="borderRightStyle">solid</property>
-                                            <property name="borderRightWidth">thin</property>
-                                            <property name="borderTopColor">#FFCC00</property>
-                                            <property name="borderTopStyle">solid</property>
-                                            <property name="borderTopWidth">thin</property>
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                        </cell>
-                                        <cell id="783">
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                            <property name="verticalAlign">middle</property>
-                                            <label id="780">
-                                                <property name="fontSize">8pt</property>
-                                                <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">2px</property>
-                                                <property name="paddingBottom">0pt</property>
-                                                <property name="paddingRight">0pt</property>
-                                                <property name="textAlign">left</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <label id="879">
+                                                <property name="style">SubmitForApproval</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="paddingTop">4pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">4pt</property>
+                                                <property name="paddingRight">2pt</property>
+                                                <property name="textAlign">center</property>
+                                                <property name="whiteSpace">normal</property>
                                                 <text-property name="text">To Be Approved</text-property>
                                             </label>
                                         </cell>
-                                    </row>
-                                    <row id="785">
-                                        <property name="paddingTop">0pt</property>
-                                        <property name="paddingLeft">0pt</property>
-                                        <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">0pt</property>
-                                        <property name="height">0.2in</property>
-                                        <cell id="786">
+                                        <cell id="907"/>
+                                        <cell id="857">
                                             <property name="style">Approve</property>
-                                            <property name="borderLeftColor">#008000</property>
+                                            <property name="borderBottomColor">#C0C0C0</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">medium</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
                                             <property name="borderLeftStyle">solid</property>
-                                            <property name="borderLeftWidth">thin</property>
-                                            <property name="borderRightColor">#008000</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
                                             <property name="borderRightStyle">solid</property>
-                                            <property name="borderRightWidth">thin</property>
-                                            <property name="borderTopColor">#008000</property>
-                                            <property name="borderTopStyle">solid</property>
-                                            <property name="borderTopWidth">thin</property>
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                        </cell>
-                                        <cell id="787">
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                            <property name="verticalAlign">middle</property>
-                                            <label id="788">
-                                                <property name="fontSize">8pt</property>
-                                                <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">2px</property>
-                                                <property name="paddingBottom">0pt</property>
-                                                <property name="paddingRight">0pt</property>
-                                                <property name="textAlign">left</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <label id="880">
+                                                <property name="style">Approve</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="paddingTop">4pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">4pt</property>
+                                                <property name="paddingRight">2pt</property>
+                                                <property name="textAlign">center</property>
                                                 <text-property name="text">Approved</text-property>
                                             </label>
                                         </cell>
-                                    </row>
-                                    <row id="789">
-                                        <property name="paddingTop">0pt</property>
-                                        <property name="paddingLeft">0pt</property>
-                                        <property name="paddingBottom">0pt</property>
-                                        <property name="paddingRight">0pt</property>
-                                        <property name="height">0.2in</property>
-                                        <cell id="790">
-                                            <property name="style">Comment</property>
-                                            <property name="borderBottomColor">#000000</property>
+                                        <cell id="910"/>
+                                        <cell id="858">
+                                            <property name="style">Reject</property>
+                                            <property name="borderBottomColor">#C0C0C0</property>
                                             <property name="borderBottomStyle">solid</property>
-                                            <property name="borderBottomWidth">1px</property>
-                                            <property name="borderLeftColor">#000000</property>
+                                            <property name="borderBottomWidth">medium</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
                                             <property name="borderLeftStyle">solid</property>
-                                            <property name="borderLeftWidth">1px</property>
-                                            <property name="borderRightColor">#000000</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
                                             <property name="borderRightStyle">solid</property>
-                                            <property name="borderRightWidth">1px</property>
-                                            <property name="borderTopColor">#000000</property>
-                                            <property name="borderTopStyle">solid</property>
-                                            <property name="borderTopWidth">1px</property>
-                                            <property name="paddingTop">2px</property>
-                                            <property name="paddingLeft">2px</property>
-                                            <property name="paddingBottom">2px</property>
-                                            <property name="paddingRight">2px</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <label id="881">
+                                                <property name="style">Reject</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="paddingTop">4pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">4pt</property>
+                                                <property name="paddingRight">2pt</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Rejected</text-property>
+                                            </label>
                                         </cell>
-                                        <cell id="791">
-                                            <property name="paddingTop">1px</property>
-                                            <property name="paddingLeft">1px</property>
-                                            <property name="paddingBottom">1px</property>
-                                            <property name="paddingRight">1px</property>
-                                            <property name="verticalAlign">middle</property>
-                                            <label id="792">
-                                                <property name="fontSize">8pt</property>
-                                                <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">1px</property>
-                                                <property name="paddingBottom">0pt</property>
-                                                <property name="paddingRight">0pt</property>
-                                                <property name="textAlign">left</property>
-                                                <text-property name="text">Comment</text-property>
+                                        <cell id="913"/>
+                                        <cell id="859">
+                                            <property name="style">Comment</property>
+                                            <property name="borderBottomColor">#C0C0C0</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">medium</property>
+                                            <property name="borderLeftColor">#C0C0C0</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">medium</property>
+                                            <property name="borderRightColor">#C0C0C0</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">medium</property>
+                                            <label id="882">
+                                                <property name="style">Comment</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="paddingTop">4pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">4pt</property>
+                                                <property name="paddingRight">2pt</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Comments</text-property>
                                             </label>
                                         </cell>
                                     </row>
@@ -1522,6 +2134,9 @@ function stopBlink() {
                         <column id="140">
                             <property name="width">1.8229166666666667in</property>
                         </column>
+                        <column id="945">
+                            <property name="width">1.3333333333333333in</property>
+                        </column>
                         <column id="141">
                             <property name="width">1.3333333333333333in</property>
                         </column>
@@ -1580,6 +2195,63 @@ function stopBlink() {
                                         <property name="textUnderline">underline</property>
                                         <property name="textAlign">left</property>
                                         <text-property name="text">Last Change Date</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="942">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <label id="946">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Tahoma"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#666666</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">underline</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">black</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderLeftWidth">medium</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">normal</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <text-property name="text">Step Duration</text-property>
                                     </label>
                                 </cell>
                                 <cell id="121">
@@ -1676,6 +2348,7 @@ this.helpText = row["cKey"];]]></method>
                                     <property name="borderLeftStyle">none</property>
                                     <property name="borderRightStyle">none</property>
                                     <property name="borderTopStyle">none</property>
+                                    <property name="paddingRight">1pt</property>
                                     <list-property name="highlightRules">
                                         <structure>
                                             <property name="operator">eq</property>
@@ -1695,9 +2368,11 @@ this.helpText = row["cKey"];]]></method>
                                         </structure>
                                     </list-property>
                                     <data id="149">
+                                        <property name="marginRight">0pt</property>
                                         <property name="paddingTop">2pt</property>
                                         <property name="paddingLeft">2pt</property>
                                         <property name="paddingBottom">2pt</property>
+                                        <property name="paddingRight">2pt</property>
                                         <property name="display">block</property>
                                         <property name="resultSetColumn">Status</property>
                                     </data>
@@ -1708,7 +2383,7 @@ this.helpText = row["cKey"];]]></method>
                                     <property name="borderRightStyle">none</property>
                                     <property name="borderTopStyle">none</property>
                                     <property name="paddingTop">0pt</property>
-                                    <property name="paddingLeft">0pt</property>
+                                    <property name="paddingLeft">1pt</property>
                                     <property name="paddingBottom">0pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <property name="textAlign">left</property>
@@ -1716,7 +2391,7 @@ this.helpText = row["cKey"];]]></method>
                                         <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
  <ChartWithAxes version="2.6.1" type="Line Chart" subType="Overlay" script="&#10;/**&#10; * Called before drawing each datapoint graphical representation or marker.&#10; * &#10; * @param dph&#10; *            DataPointHints&#10; * @param fill&#10; *            Fill&#10; * @param icsc&#10; *            IChartScriptContext&#10; */&#10;&#10;function beforeDrawDataPoint( dph, fill, icsc )&#10;{&#10;&#10; &#10; var cat = dph.getSeriesDisplayValue(); &#10; if (cat == &quot;Submitted for Review&quot;)&#10;   fill.set(0,0,128); //Blue&#10;&#10; else if(cat == &quot;To Be Approved&quot;)&#10;   fill.set(255,204,0); //Yellow&#10;&#10; else if(cat == &quot;Rejected&quot;)&#10;   fill.set(255,0,0); //Red&#10;&#10; else if(cat == &quot;Approved&quot;)&#10;   fill.set(0,128,0); //Green&#10;&#10; else if(cat == &quot;Comment&quot;)&#10;   fill.set(255,255,255); //White&#10;&#10;&#10;}&#10;&#10;&#10;&#10;/**&#10; * Called before generation of chart model to GeneratedChartState.&#10; * &#10; * @param chart&#10; *            Chart&#10; * @param icsc&#10; *            IChartScriptContext&#10; */&#10;&#10;function beforeGeneration( chart, icsc )&#10;{&#10; &#10; xAxis = chart.getBaseAxes()[0];&#10; xAxis.getScale().setMax(Packages.org.eclipse.birt.chart.model.data.impl.NumberDataElementImpl.create(nmax));&#10;}&#10;&#10;/**&#10; * Called after populating the series dataset.&#10; * &#10; * @param series&#10; *            Series&#10; * @param dataSet&#10; *            DataSet&#10; * @param icsc&#10; *            IChartScriptContext&#10; */&#10;&#10;function afterDataSetFilled( series, dataSet, icsc )&#10;{&#10;&#10;var list = series.dataSet.getValues();&#10;nmax = list.length;&#10;&#10;}&#10;" reverseCategory="false">
   <block>
-   <children _type="TitleBlock" visible="false">
+   <children _type="TitleBlock" anchor="4" visible="false">
     <outline>
      <color _nil="1"/>
     </outline>
@@ -1770,7 +2445,7 @@ this.helpText = row["cKey"];]]></method>
   <extendedProperties name="enable.area.alt" value="false"/>
   <extendedProperties name="enable.drill.category" value="true"/>
   <extendedProperties name="enable.drill.series" value="true"/>
-  <extendedProperties name="jschart.client.script" value="/**&#13;&#10; * Called before series instance is rendered.&#13;&#10; *&#13;&#10; * @param series&#13;&#10; *            series instance&#13;&#10; * @param  seriesOptions&#13;&#10; *             series options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; * @param  seriesIndex&#13;&#10; *             series index&#13;&#10; */&#13;&#10;beforeDrawSeries: function(series, seriesOptions, chart, seriesIndex)&#13;&#10;{&#13;&#10;    switch (seriesOptions.name) {&#13;&#10;        case &quot;Submitted for Review&quot;:&#13;&#10;            seriesOptions.color = &quot;#000080&quot;; //Blue&#13;&#10;            break;&#13;&#10;        case &quot;To Be Approved&quot;:&#13;&#10;            seriesOptions.color = &quot;#FFCC00&quot;; //Yellow&#13;&#10;            break;&#13;&#10;        case &quot;Rejected&quot;:&#13;&#10;            seriesOptions.color = &quot;#FF0000&quot;; //Red&#13;&#10;            break;&#13;&#10;        case &quot;Approved&quot;:&#13;&#10;            seriesOptions.color = &quot;#008000&quot;; //Green&#13;&#10;            break;&#13;&#10;        case &quot;Comment&quot;:&#13;&#10;            seriesOptions.color = &quot;#FFFFFF&quot;; //White&#13;&#10;            seriesOptions.marker.lineColor = &quot;#000000&quot;;&#13;&#10;            seriesOptions.marker.lineWidth = .5;&#13;&#10;            break;&#13;&#10;    }&#13;&#10;&#13;&#10;},&#13;&#10;&#13;&#10;/**&#13;&#10; * Called before chart instance is rendered.&#13;&#10; *&#13;&#10; * @param options&#13;&#10; *            chart options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; */&#13;&#10;beforeRendering: function(options, chart)&#13;&#10;{&#13;&#10;    chart= { &#13;&#10;            margin: [0,0,0,0],&#13;&#10;            spacingTop: 0,&#13;&#10;            spacingBottom: 0,&#13;&#10;            spacingLeft: 0,&#13;&#10;            spacingRight: 0&#13;&#10;        };&#13;&#10;&#13;&#10;},&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;/**&#13;&#10; * Called after chart instance is rendered.&#13;&#10; *&#13;&#10; * @param chart&#13;&#10; *            chart instance&#13;&#10; */&#13;&#10;afterRendering: function(chart)&#13;&#10;{&#13;&#10;    chart.getCore().yAxis[0].addPlotLine({&#13;&#10;        value:  1,&#13;&#10;        color: &#039;black&#039;,&#13;&#10;        width: 1,&#13;&#10;        id: &#039;path&#039;,&#13;&#10;        zIndex: 0&#13;&#10;    });&#13;&#10;},"/>
+  <extendedProperties name="jschart.client.script" value=""/>
   <extendedProperties name="jschart.series.shadow" value="false"/>
   <extendedProperties name="jschart.animation" value="false"/>
   <extendedProperties name="jschart.scroll" value="false"/>
@@ -1782,8 +2457,8 @@ this.helpText = row["cKey"];]]></method>
    <orthogonalSampleData dataSetRepresentation="25,14,45,91,42" seriesDefinitionIndex="3"/>
    <orthogonalSampleData dataSetRepresentation="66,25,86,42,03" seriesDefinitionIndex="4"/>
   </sampleData>
-  <interactivity enable="true"/>
-  <emptyMessage>
+  <interactivity enable="false"/>
+  <emptyMessage visible="false">
    <caption value="This chart contains no data."/>
    <background _body=",64,127,127,127"/>
    <outline>
@@ -1792,7 +2467,7 @@ this.helpText = row["cKey"];]]></method>
   </emptyMessage>
   <axes type="0" categoryAxis="false">
    <title visible="false">
-    <caption value="X-Axis Title"/>
+    <caption value=""/>
     <background _nil="1"/>
     <outline>
      <color _nil="1"/>
@@ -2282,7 +2957,7 @@ this.helpText = row["cKey"];]]></method>
                                                 <property name="allowExport">false</property>
                                             </structure>
                                         </list-property>
-                                        <property name="theme">WFApp_library.Modern</property>
+                                        <property name="theme">WFApp_library.Progress Chart</property>
                                     </extended-item>
                                 </cell>
                                 <cell id="128">
@@ -2296,6 +2971,78 @@ this.helpText = row["cKey"];]]></method>
                                         <property name="paddingBottom">2pt</property>
                                         <property name="resultSetColumn">cDate</property>
                                     </data>
+                                </cell>
+                                <cell id="943">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <text-data id="948">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Tahoma"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="fontWeight">normal</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#666666</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">none</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">black</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderLeftWidth">medium</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">2pt</property>
+                                        <property name="paddingLeft">2pt</property>
+                                        <property name="paddingBottom">2pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">normal</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <expression name="valueExpr">var seconds = row["stepDuration"];&#13;
+    var levels = [&#13;
+        [Math.floor(seconds / 31536000), 'y'],&#13;
+        [Math.floor((seconds % 31536000) / 86400), 'd'],&#13;
+        [Math.floor(((seconds % 31536000) % 86400) / 3600), 'h'],&#13;
+        [Math.floor((((seconds % 31536000) % 86400) % 3600) / 60), 'm'],&#13;
+        [(((seconds % 31536000) % 86400) % 3600) % 60, 's'],&#13;
+    ];&#13;
+    var returntext = '';&#13;
+&#13;
+    for (var i = 0, max = levels.length; i &lt; max; i++) {&#13;
+        if ( levels[i][0] === 0 ) continue;&#13;
+        returntext += ' ' + levels[i][0] + '' + (levels[i][0] === 1 ? levels[i][1].substr(0, levels[i][1].length-1): levels[i][1]);&#13;
+    };&#13;
+returntext.trim();</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
                                 </cell>
                                 <cell id="130">
                                     <property name="borderBottomStyle">none</property>
@@ -2371,6 +3118,13 @@ sessionStorage.reviewCnt = <VALUE-OF>vars["reviewCnt"]</VALUE-OF>;
                                     <property name="borderTopStyle">none</property>
                                 </cell>
                                 <cell id="820">
+                                    <property name="backgroundColor">#FFFFFF</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                </cell>
+                                <cell id="944">
                                     <property name="backgroundColor">#FFFFFF</property>
                                     <property name="borderBottomStyle">none</property>
                                     <property name="borderLeftStyle">none</property>
@@ -2513,6 +3267,9 @@ sessionStorage.reviewCnt = <VALUE-OF>vars["reviewCnt"]</VALUE-OF>;
                         <column id="202">
                             <property name="width">1.96875in</property>
                         </column>
+                        <column id="952">
+                            <property name="width">1.96875in</property>
+                        </column>
                         <column id="203">
                             <property name="width">1.5208333333333333in</property>
                         </column>
@@ -2560,6 +3317,63 @@ sessionStorage.reviewCnt = <VALUE-OF>vars["reviewCnt"]</VALUE-OF>;
                                         <property name="textUnderline">underline</property>
                                         <property name="textAlign">left</property>
                                         <text-property name="text">Last Change Date</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="949">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <label id="953">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Tahoma"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#666666</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">underline</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">black</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderLeftWidth">medium</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">normal</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <text-property name="text">Step Duration</text-property>
                                     </label>
                                 </cell>
                                 <cell id="183">
@@ -2726,7 +3540,7 @@ this.helpText = row["cKey"];]]></method>
   <extendedProperties name="enable.area.alt" value="false"/>
   <extendedProperties name="enable.drill.category" value="true"/>
   <extendedProperties name="enable.drill.series" value="true"/>
-  <extendedProperties name="jschart.client.script" value="/**&#13;&#10; * Called before data point instance is rendered.&#13;&#10; *&#13;&#10; * @param point&#13;&#10; *            data point instance&#13;&#10; * @param  pointOptions&#13;&#10; *             data point options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; * @param  seriesIndex&#13;&#10; *             series index&#13;&#10; * @param  pointIndex&#13;&#10; *             data point index&#13;&#10; */&#13;&#10;beforeDrawDataPoint: function(point, pointOptions, chart, seriesIndex, pointIndex)&#13;&#10;{ &#13;&#10;&#13;&#10;},&#13;&#10;&#13;&#10;/**&#13;&#10; * Called before series instance is rendered.&#13;&#10; *&#13;&#10; * @param series&#13;&#10; *            series instance&#13;&#10; * @param  seriesOptions&#13;&#10; *             series options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; * @param  seriesIndex&#13;&#10; *             series index&#13;&#10; */&#13;&#10;beforeDrawSeries: function(series, seriesOptions, chart, seriesIndex)&#13;&#10;{&#13;&#10;    switch (seriesOptions.name) {&#13;&#10;        case &quot;Submitted for Review&quot;:&#13;&#10;            seriesOptions.color = &quot;#000080&quot;; //Blue&#13;&#10;            break;&#13;&#10;        case &quot;To Be Approved&quot;:&#13;&#10;            seriesOptions.color = &quot;#FFCC00&quot;; //Yellow&#13;&#10;            break;&#13;&#10;        case &quot;Rejected&quot;:&#13;&#10;            seriesOptions.color = &quot;#FF0000&quot;; //Red&#13;&#10;            break;&#13;&#10;        case &quot;Approved&quot;:&#13;&#10;            seriesOptions.color = &quot;#008000&quot;; //Green&#13;&#10;            break;&#13;&#10;        case &quot;Comment&quot;:&#13;&#10;            seriesOptions.color = &quot;#FFFFFF&quot;; //White&#13;&#10;            seriesOptions.marker.lineColor = &quot;#000000&quot;;&#13;&#10;            seriesOptions.marker.lineWidth = .5;&#13;&#10;            break;&#13;&#10;    }&#13;&#10;},&#13;&#10;&#13;&#10;/**&#13;&#10; * Called before chart instance is rendered.&#13;&#10; *&#13;&#10; * @param options&#13;&#10; *            chart options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; */&#13;&#10;beforeRendering: function(options, chart)&#13;&#10;{&#13;&#10;    chart= { &#13;&#10;            margin: [0,0,0,0],&#13;&#10;            spacingTop: 0,&#13;&#10;            spacingBottom: 0,&#13;&#10;            spacingLeft: 0,&#13;&#10;            spacingRight: 0,&#13;&#10;&#13;&#10;        };&#13;&#10;&#13;&#10;},&#13;&#10;&#13;&#10;/**&#13;&#10; * Called after chart instance is rendered.&#13;&#10; *&#13;&#10; * @param chart&#13;&#10; *            chart instance&#13;&#10; */&#13;&#10;afterRendering: function(chart)&#13;&#10;{&#13;&#10;    chart.getCore().yAxis[0].addPlotLine({&#13;&#10;        value:  1,&#13;&#10;        color: &#039;black&#039;,&#13;&#10;        width: 1,&#13;&#10;        id: &#039;path&#039;,&#13;&#10;        zIndex: 0&#13;&#10;    });&#13;&#10;},"/>
+  <extendedProperties name="jschart.client.script" value=""/>
   <extendedProperties name="jschart.series.shadow" value="false"/>
   <extendedProperties name="jschart.animation" value="false"/>
   <sampleData>
@@ -3235,7 +4049,7 @@ this.helpText = row["cKey"];]]></method>
                                                 <property name="allowExport">false</property>
                                             </structure>
                                         </list-property>
-                                        <property name="theme">WFApp_library.Modern</property>
+                                        <property name="theme">WFApp_library.Progress Chart</property>
                                     </extended-item>
                                 </cell>
                                 <cell id="190">
@@ -3248,6 +4062,78 @@ this.helpText = row["cKey"];]]></method>
                                         <property name="paddingBottom">2pt</property>
                                         <property name="resultSetColumn">cDate</property>
                                     </data>
+                                </cell>
+                                <cell id="950">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <text-data id="954">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Tahoma"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="fontWeight">normal</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#666666</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">none</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">black</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderLeftWidth">medium</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">2pt</property>
+                                        <property name="paddingLeft">2pt</property>
+                                        <property name="paddingBottom">2pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">normal</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <expression name="valueExpr">var seconds = row["stepDuration"];&#13;
+    var levels = [&#13;
+        [Math.floor(seconds / 31536000), 'y'],&#13;
+        [Math.floor((seconds % 31536000) / 86400), 'd'],&#13;
+        [Math.floor(((seconds % 31536000) % 86400) / 3600), 'h'],&#13;
+        [Math.floor((((seconds % 31536000) % 86400) % 3600) / 60), 'm'],&#13;
+        [(((seconds % 31536000) % 86400) % 3600) % 60, 's'],&#13;
+    ];&#13;
+    var returntext = '';&#13;
+&#13;
+    for (var i = 0, max = levels.length; i &lt; max; i++) {&#13;
+        if ( levels[i][0] === 0 ) continue;&#13;
+        returntext += ' ' + levels[i][0] + '' + (levels[i][0] === 1 ? levels[i][1].substr(0, levels[i][1].length-1): levels[i][1]);&#13;
+    };&#13;
+returntext.trim();</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
                                 </cell>
                                 <cell id="192">
                                     <property name="borderBottomStyle">none</property>
@@ -3315,6 +4201,13 @@ sessionStorage.approveCnt = <VALUE-OF>vars["approveCnt"]</VALUE-OF>;
                                     <property name="borderTopStyle">none</property>
                                 </cell>
                                 <cell id="830">
+                                    <property name="backgroundColor">white</property>
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                </cell>
+                                <cell id="951">
                                     <property name="backgroundColor">white</property>
                                     <property name="borderBottomStyle">none</property>
                                     <property name="borderLeftStyle">none</property>
@@ -3652,7 +4545,7 @@ this.helpText = row["cKey"];]]></method>
   <extendedProperties name="enable.area.alt" value="false"/>
   <extendedProperties name="enable.drill.category" value="true"/>
   <extendedProperties name="enable.drill.series" value="true"/>
-  <extendedProperties name="jschart.client.script" value="/**&#13;&#10; * Called before data point instance is rendered.&#13;&#10; *&#13;&#10; * @param point&#13;&#10; *            data point instance&#13;&#10; * @param  pointOptions&#13;&#10; *             data point options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; * @param  seriesIndex&#13;&#10; *             series index&#13;&#10; * @param  pointIndex&#13;&#10; *             data point index&#13;&#10; */&#13;&#10;beforeDrawDataPoint: function(point, pointOptions, chart, seriesIndex, pointIndex)&#13;&#10;{ &#13;&#10;&#13;&#10;},&#13;&#10;&#13;&#10;/**&#13;&#10; * Called before series instance is rendered.&#13;&#10; *&#13;&#10; * @param series&#13;&#10; *            series instance&#13;&#10; * @param  seriesOptions&#13;&#10; *             series options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; * @param  seriesIndex&#13;&#10; *             series index&#13;&#10; */&#13;&#10;beforeDrawSeries: function(series, seriesOptions, chart, seriesIndex)&#13;&#10;{&#13;&#10;    switch (seriesOptions.name) {&#13;&#10;        case &quot;Submitted for Review&quot;:&#13;&#10;            seriesOptions.color = &quot;#000080&quot;; //Blue&#13;&#10;            break;&#13;&#10;        case &quot;To Be Approved&quot;:&#13;&#10;            seriesOptions.color = &quot;#FFCC00&quot;; //Yellow&#13;&#10;            break;&#13;&#10;        case &quot;Rejected&quot;:&#13;&#10;            seriesOptions.color = &quot;#FF0000&quot;; //Red&#13;&#10;            break;&#13;&#10;        case &quot;Approved&quot;:&#13;&#10;            seriesOptions.color = &quot;#008000&quot;; //Green&#13;&#10;            break;&#13;&#10;        case &quot;Comment&quot;:&#13;&#10;            seriesOptions.color = &quot;#FFFFFF&quot;; //White&#13;&#10;            seriesOptions.marker.lineColor = &quot;#000000&quot;;&#13;&#10;            seriesOptions.marker.lineWidth = .5;&#13;&#10;            break;&#13;&#10;    }&#13;&#10;},&#13;&#10;&#13;&#10;/**&#13;&#10; * Called before chart instance is rendered.&#13;&#10; *&#13;&#10; * @param options&#13;&#10; *            chart options&#13;&#10; * @param  chart&#13;&#10; *             chart instance&#13;&#10; */&#13;&#10;beforeRendering: function(options, chart)&#13;&#10;{&#13;&#10;    chart= { &#13;&#10;            margin: [0,0,0,0],&#13;&#10;            spacingTop: 0,&#13;&#10;            spacingBottom: 0,&#13;&#10;            spacingLeft: 0,&#13;&#10;            spacingRight: 0,&#13;&#10;&#13;&#10;        };&#13;&#10;&#13;&#10;},&#13;&#10;&#13;&#10;/**&#13;&#10; * Called after chart instance is rendered.&#13;&#10; *&#13;&#10; * @param chart&#13;&#10; *            chart instance&#13;&#10; */&#13;&#10;afterRendering: function(chart)&#13;&#10;{&#13;&#10;    chart.getCore().yAxis[0].addPlotLine({&#13;&#10;        value:  1,&#13;&#10;        color: &#039;black&#039;,&#13;&#10;        width: 1,&#13;&#10;        id: &#039;path&#039;,&#13;&#10;        zIndex: 0&#13;&#10;    });&#13;&#10;},"/>
+  <extendedProperties name="jschart.client.script" value=""/>
   <extendedProperties name="jschart.series.shadow" value="false"/>
   <extendedProperties name="jschart.animation" value="false"/>
   <sampleData>
@@ -3663,6 +4556,7 @@ this.helpText = row["cKey"];]]></method>
    <orthogonalSampleData dataSetRepresentation="24.0,16.0,48.0,32.0,40.0" seriesDefinitionIndex="3"/>
    <orthogonalSampleData dataSetRepresentation="30.0,20.0,60.0,40.0,50.0" seriesDefinitionIndex="4"/>
   </sampleData>
+  <interactivity enable="false"/>
   <emptyMessage>
    <caption value="This chart contains no data."/>
    <background _body=",64,127,127,127"/>
@@ -4160,7 +5054,7 @@ this.helpText = row["cKey"];]]></method>
                                                 <property name="allowExport">false</property>
                                             </structure>
                                         </list-property>
-                                        <property name="theme">WFApp_library.Modern</property>
+                                        <property name="theme">WFApp_library.Progress Chart</property>
                                     </extended-item>
                                 </cell>
                                 <cell id="94">

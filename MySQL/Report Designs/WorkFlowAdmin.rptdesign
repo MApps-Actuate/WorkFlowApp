@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.0.v20150128-0131 Build &lt;4.2.3.v20150128-0131></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
     <property name="units">in</property>
     <property name="theme">WFApp_library.WFColors</property>
     <property name="iconFile">/templates/blank_report.gif</property>
@@ -99,7 +99,13 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Comment Data Source" id="898"
- extends="WFApp_library.Comment Data Source"/>
+ extends="WFApp_library.Comment Data Source">
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:8433/workflow</property>
+            <property name="odaUser">wfapp</property>
+            <property name="odaIsolationMode">serializable</property>
+            <encrypted-property name="odaPassword" encryptionID="jce">38bf60bc5cb36729</encrypted-property>
+        </oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Insert Data Set" id="743">
@@ -126,13 +132,6 @@
                     <text-property name="heading">Content</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">cDate</property>
-                    <property name="alias">cDate</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">cDate</text-property>
-                    <text-property name="heading">cDate</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">cUser</property>
                     <property name="alias">cUser</property>
                     <property name="analysis">dimension</property>
@@ -153,6 +152,17 @@
                     <text-property name="displayName">Status</text-property>
                     <text-property name="heading">Status</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">shortContent</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cDate</property>
+                    <property name="alias">cDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cDate</text-property>
+                    <text-property name="heading">cDate</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters">
                 <structure>
@@ -160,7 +170,7 @@
                     <property name="paramName">pKey</property>
                     <property name="nativeName"></property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">-1</property>
+                    <property name="nativeDataType">12</property>
                     <property name="position">1</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
@@ -170,7 +180,7 @@
                     <property name="paramName">pReportName</property>
                     <property name="nativeName"></property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">-1</property>
+                    <property name="nativeDataType">12</property>
                     <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
@@ -180,7 +190,7 @@
                     <property name="paramName">pUpdateStatus</property>
                     <property name="nativeName"></property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">-1</property>
+                    <property name="nativeDataType">12</property>
                     <property name="position">3</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
@@ -205,28 +215,28 @@
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">cDate</property>
-                        <property name="dataType">date-time</property>
-                    </structure>
-                    <structure>
-                        <property name="position">5</property>
                         <property name="name">cUser</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">5</property>
                         <property name="name">FullReportName</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">6</property>
                         <property name="name">Status</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">8</property>
+                        <property name="position">7</property>
                         <property name="name">shortContent</property>
                         <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">cDate</property>
+                        <property name="dataType">date-time</property>
                     </structure>
                 </list-property>
             </structure>
@@ -237,105 +247,66 @@
                     <property name="name">ID</property>
                     <property name="nativeName">ID</property>
                     <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">cKey</property>
                     <property name="nativeName">cKey</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">Content</property>
                     <property name="nativeName">Content</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">cDate</property>
-                    <property name="nativeName">cDate</property>
-                    <property name="dataType">date-time</property>
-                </structure>
-                <structure>
-                    <property name="position">5</property>
                     <property name="name">cUser</property>
                     <property name="nativeName">cUser</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">5</property>
                     <property name="name">FullReportName</property>
                     <property name="nativeName">FullReportName</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">7</property>
+                    <property name="position">6</property>
                     <property name="name">Status</property>
                     <property name="nativeName">Status</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">8</property>
+                    <property name="position">7</property>
                     <property name="name">shortContent</property>
                     <property name="nativeName">shortContent</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">cDate</property>
+                    <property name="nativeName">cDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select *
-from comments
-where cKey=?
-and FullReportName=?
-and Status=?]]></xml-property>
+from comments 
+where "cKey"=?
+and "FullReportName"=?
+and "Status"=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
-  <DataSetParameters>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>1</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>2</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>3</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -870,12 +841,12 @@ from comments]]></xml-property>
     </page-setup>
     <body>
         <extended-item extensionName="SqlWriteback" id="791">
-            <property name="fontSize">medium</property>
             <property name="dataSource">Comment Data Source</property>
             <property name="itemOutput">Records inserted: $cnt.</property>
             <expression name="sqlStatement" type="javascript">if (params["pUpdateStatus"].value == "Submitted for Review") {&#13;
-	"INSERT INTO comments (cKey,Content,cDate,cUser,FullReportName,Status, shortContent) VALUES (\'" + params["pKey"] + "\',\'" + params["pUpdateComment"] + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'Submitted for Review\', \'" + params["pShortComment"].value.replace(/'/g, "''") + "\')";&#13;
+	"INSERT INTO comments (\"cKey\",\"Content\",\"cDate\",\"cUser\",\"FullReportName\",\"Status\", \"shortContent\") VALUES (\'" + params["pKey"] + "\',\'" + params["pUpdateComment"] + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'Submitted for Review\', \'" + params["pShortComment"].value.replace(/'/g, "''") + "\')";&#13;
 }</expression>
+            <property name="fontSize">medium</property>
         </extended-item>
         <table id="744">
             <property name="dataSet">Insert Data Set</property>
@@ -1061,7 +1032,7 @@ from comments]]></xml-property>
                         <property name="dataSource">Comment Data Source</property>
                         <property name="itemOutput">$cnt Records Deleted</property>
                         <expression name="sqlStatement" type="javascript">if (params["pUpdateStatus"].value == "Delete") {&#13;
-	"DELETE FROM comments WHERE ID IN (" + params["pKey"].value + ")";&#13;
+	"DELETE FROM comments WHERE \"ID\" IN (" + params["pKey"].value + ")";&#13;
 }</expression>
                     </extended-item>
                     <extended-item extensionName="HTMLButton" name="btnDelete" id="885">

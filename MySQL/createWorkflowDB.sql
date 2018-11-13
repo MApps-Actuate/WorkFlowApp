@@ -1,14 +1,34 @@
-CREATE DATABASE IF NOT EXISTS `workflow`;
-CREATE TABLE `workflow`.`comments` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `cKey` VARCHAR(50) NOT NULL,
-  `Content` LONGTEXT NOT NULL,
-  `cDate` DATETIME NOT NULL,
-  `cUser` VARCHAR(45) NOT NULL,
-  `FullReportName` VARCHAR(256) NOT NULL,
-  `Status` VARCHAR(45) NOT NULL,
-  `shortContent` VARCHAR(55) NULL,
-  PRIMARY KEY (`ID`));
-CREATE USER 'wfapp'@'%' IDENTIFIED BY 'wfapp';
-GRANT ALL PRIVILEGES ON `workflow` . * TO 'wfapp'@'%';
-FLUSH PRIVILEGES;
+CREATE DATABASE workflow
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+    
+CREATE TABLE public.comments
+(
+    "ID" integer NOT NULL DEFAULT nextval('"comments_ID_seq"'::regclass),
+    "cKey" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    "Content" text COLLATE pg_catalog."default" NOT NULL,
+    "cDate" timestamp without time zone NOT NULL,
+    "cUser" character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    "FullReportName" character varying(256) COLLATE pg_catalog."default" NOT NULL,
+    "Status" character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    "shortContent" character varying(55) COLLATE pg_catalog."default",
+    CONSTRAINT id PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.comments
+    OWNER to postgres;
+
+GRANT ALL ON TABLE public.comments TO wfapp;
+
+GRANT ALL ON TABLE public.comments TO postgres;
+
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO wfapp;

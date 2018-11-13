@@ -10,7 +10,7 @@
     </list-property>
     <body>
         <text name="8390adb3-a15d-4b1c-8809-cb7cfab93d11" id="11">
-            <text-property name="content"><![CDATA[http://ACTUATEONE:8700/iportal/servlet/DownloadFile/AdminGadget.html?name=%2fApplications%2fWorkFlowApp%2fReport%20Designs%2fAdminGadget%2ehtml%3b1&amp;fileExtension=HTML&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false&amp;locale=en_US]]></text-property>
+            <text-property name="content"><![CDATA[http://localhost:8700/iportal/servlet/DownloadFile/AdminGadget.html?name=%2fApplications%2fWorkFlowApp%2fReport%20Designs%2fAdminGadget%2ehtml&amp;fileExtension=HTML&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false&amp;locale=en_US]]></text-property>
         </text>
     </body>
     <property name="dashboardView">

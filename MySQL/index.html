@@ -22,7 +22,7 @@
 		actuate.initialize("/iportal",reqOps,null, null, afterInit );
 		function afterInit() {
 			vwr = new actuate.Viewer("splashDiv");
-			vwr.setWidth(800);
+			vwr.setWidth(1400);
 			vwr.setHeight(600);
 			var uiOpts = new actuate.viewer.UIOptions();
 			uiOpts.enableToolBar(false);
@@ -36,7 +36,7 @@
 </head>
 <body>
 	<div style="width:100%; margin:auto;">
-		<table width="100%"><tr><td style="padding:0; text-align:center;"><div id="splashDiv" style="background:#FFFFFF; vertical-align:middle; height:600;"></div></td></tr></table>
+		<table style="width:100%;"><tr><td style="padding:0;"><div id="splashDiv" style="background:#FFFFFF; vertical-align:middle;"></div></td></tr></table>
 	</div>
 </body>
 </html>

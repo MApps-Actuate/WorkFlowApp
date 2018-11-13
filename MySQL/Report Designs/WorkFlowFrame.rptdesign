@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201603302314</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
     <property name="units">in</property>
     <property name="theme">WFApp_library.WFColors</property>
     <property name="iconFile">/templates/blank_report.gif</property>
@@ -161,8 +161,8 @@ if (window["__first_load"] === undefined) {
                     <name>disabledContentBidiFormatStr</name>
                 </ex-property>
             </list-property>
-            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://ACTUATEONE:3306/workflow</property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:8433/workflow</property>
             <property name="odaUser">wfapp</property>
             <property name="odaIsolationMode">serializable</property>
             <encrypted-property name="odaPassword" encryptionID="jce">38bf60bc5cb36729</encrypted-property>
@@ -238,13 +238,6 @@ curPos = 0;]]></method>
                     <text-property name="heading">Content</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">cDate</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">cDate</text-property>
-                    <property name="onColumnLayout">false</property>
-                    <text-property name="heading">cDate</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">cUser</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">cUser</text-property>
@@ -265,6 +258,19 @@ curPos = 0;]]></method>
                     <property name="onColumnLayout">false</property>
                     <text-property name="heading">Status</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">shortContent</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">shortContent</text-property>
+                    <text-property name="heading">shortContent</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cDate</text-property>
+                    <property name="onColumnLayout">false</property>
+                    <text-property name="heading">cDate</text-property>
+                </structure>
             </list-property>
             <list-property name="filter"/>
             <list-property name="parameters">
@@ -273,7 +279,7 @@ curPos = 0;]]></method>
                     <property name="paramName">pReportName</property>
                     <property name="nativeName"></property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">-1</property>
+                    <property name="nativeDataType">12</property>
                     <property name="position">1</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
@@ -283,7 +289,7 @@ curPos = 0;]]></method>
                     <property name="paramName">pKey</property>
                     <property name="nativeName"></property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">-1</property>
+                    <property name="nativeDataType">12</property>
                     <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
@@ -315,23 +321,28 @@ curPos = 0;]]></method>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">cDate</property>
-                        <property name="dataType">date-time</property>
-                    </structure>
-                    <structure>
-                        <property name="position">5</property>
                         <property name="name">cUser</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">5</property>
                         <property name="name">FullReportName</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">6</property>
                         <property name="name">Status</property>
                         <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">shortContent</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">cDate</property>
+                        <property name="dataType">date-time</property>
                     </structure>
                 </list-property>
             </structure>
@@ -367,72 +378,47 @@ reportContext.setPersistentGlobalVariable("status", "");]]></method>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">cDate</property>
-                    <property name="nativeName">cDate</property>
-                    <property name="dataType">date-time</property>
-                    <property name="nativeDataType">93</property>
-                </structure>
-                <structure>
-                    <property name="position">5</property>
                     <property name="name">cUser</property>
                     <property name="nativeName">cUser</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">5</property>
                     <property name="name">FullReportName</property>
                     <property name="nativeName">FullReportName</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">7</property>
+                    <property name="position">6</property>
                     <property name="name">Status</property>
                     <property name="nativeName">Status</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">shortContent</property>
+                    <property name="nativeName">shortContent</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">cDate</property>
+                    <property name="nativeName">cDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select *
 from comments
-where FullReportName=?
-and cKey=?]]></xml-property>
+where "FullReportName"=?
+and "cKey"=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
-  <DataSetParameters>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>1</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>2</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -629,17 +615,17 @@ and cKey=?]]></xml-property>
     </page-setup>
     <body>
         <extended-item extensionName="SqlWriteback" id="737">
+            <property name="dataSource">Comment Data Source</property>
+            <property name="itemOutput">Added $cnt record(s).</property>
+            <expression name="sqlStatement" type="javascript">if ((params["pUpdateStatus"].value != "") &amp;&amp; (params["pKey"] != "")) {&#13;
+		"INSERT INTO comments (\"cKey\",\"Content\",\"cDate\",\"cUser\",\"FullReportName\",\"Status\", \"shortContent\") VALUES (\'" + params["pKey"].value + "\',\'" + params["pUpdateComment"].value + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'" + params["pUpdateStatus"].value + "\', \'" +  params["pShortComment"].value.replace(/'/g,"''") + "\')";&#13;
+	}</expression>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
                     <expression name="valueExpr" type="javascript">true</expression>
                 </structure>
             </list-property>
-            <property name="dataSource">Comment Data Source</property>
-            <property name="itemOutput">Added $cnt record(s).</property>
-            <expression name="sqlStatement" type="javascript">if ((params["pUpdateStatus"].value != "") &amp;&amp; (params["pKey"] != "")) {&#13;
-		"INSERT INTO comments (cKey,Content,cDate,cUser,FullReportName,Status, shortContent) VALUES (\'" + params["pKey"].value + "\',\'" + params["pUpdateComment"].value + "\',\'" + Formatter.format(BirtDateTime.now(),"yyyy-MM-dd HH:mm:ss") + "\',\'" + reportContext.getAppContext().get("ServerUserName") + "\',\'" + params["pReportName"] .value+ "\', \'" + params["pUpdateStatus"].value + "\', \'" +  params["pShortComment"].value.replace(/'/g,"''") + "\')";&#13;
-	}</expression>
         </extended-item>
         <grid id="601">
             <list-property name="userProperties">
@@ -695,10 +681,12 @@ and cKey=?]]></xml-property>
 	}
 	
 	function shortenComment(objEditor, content) {
-		var c1 = content.replace(/<br \/>/g, "&amp;nbsp;<br />"); //add a space before BR for short Text
-		c1 = c1.replace(/<p>/g, "&amp;nbsp;<p>");  //add a space before P for short text
-		objEditor.setData(c1); //put spaced content back into editor
-		var txtC = $("#cke_editor1 iframe").contents().find("body").text(); //get content without HTML tags
+//		var c1 = content.replace(/<br \/>/g, "&amp;nbsp;<br />"); //add a space before BR for short Text
+//		c1 = c1.replace(/<p>/g, "&amp;nbsp;<p>");  //add a space before P for short text
+//		objEditor.setData(c1); //put spaced content back into editor
+//		var txtC = $("#cke_editor1 iframe").contents().find("body").text(); 
+var txtC = objEditor.document.getBody().getText();
+//get content without HTML tags
 		if (txtC.length > 49) {  //longer than 50 add ...
 			txtC = txtC.substring(0,49);
 			txtC = txtC + " ...";
@@ -1061,7 +1049,6 @@ this.onclick = function(event)
 }
 ]]></method>
                         <expression name="text" type="constant">Approve</expression>
-                        <property name="color">white</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"ApproveButton"</expression>
                         <list-property name="visibility">
@@ -1095,7 +1082,6 @@ this.onclick = function(event)
 }
 ]]></method>
                         <expression name="text" type="constant">Reject</expression>
-                        <property name="color">white</property>
                         <property name="display">inline</property>
                         <expression name="bookmark" type="javascript">"RejectButton"</expression>
                         <list-property name="visibility">
@@ -1129,7 +1115,6 @@ this.onclick = function(event)
 }
 ]]></method>
                         <expression name="text" type="constant">Submit for Approval</expression>
-                        <property name="color">black</property>
                         <property name="backgroundImageType">url</property>
                         <property name="backgroundRepeat">repeat</property>
                         <property name="display">inline</property>
@@ -1150,19 +1135,19 @@ else&#13;
                         <text-property name="content"><![CDATA[<script>
 //This is a workaround for button backgrounds not working in iHub 3.1
 
-	$(document).ready(function() {
+//	$(document).ready(function() {
 		$("[id$='SubmitReviewButton']").children("button").css("background-color", "#FFDB5E");
 	});
 	
-	$(document).ready(function() {
+//	$(document).ready(function() {
 		$("[id$='CommentButton']").children("button").css("background-color", "white");
 	});
 	
-	$(document).ready(function() {
+//	$(document).ready(function() {
 		$("[id$='RejectButton']").children("button").css("background-color", "red");
 	});
 	
-	$(document).ready(function() {
+//	$(document).ready(function() {
 		$("[id$='ApproveButton']").children("button").css("background-color", "green");
 	});
 </script>]]></text-property>

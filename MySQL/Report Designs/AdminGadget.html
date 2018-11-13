@@ -43,9 +43,9 @@ function selectionChanged( selectedItem, pathName ){
 }
 
 function shortenComment(objEditor, content) {
-	var c1 = content.replace(/<br \/>/g, "&nbsp;<br />"); //add a space before BR for short Text
-	c1 = c1.replace(/<p>/g, "&nbsp;<p>");  //add a space before P for short text
-	objEditor.setData(c1); //put spaced content back into editor
+//	var c1 = content.replace(/<br \/>/g, "&nbsp;<br />"); //add a space before BR for short Text
+//	c1 = c1.replace(/<p>/g, "&nbsp;<p>");  //add a space before P for short text
+//	objEditor.setData(c1); //put spaced content back into editor
 	var txtC = objEditor.document.getBody().getText(); //get content without HTML tags
 	if (txtC.length > 49) {  //longer than 50 add ...
 		txtC = txtC.substring(0,49);
@@ -79,7 +79,8 @@ function insertSelected() {
 <div id="commentsDiv"><hr>
 <p>Enter comment below for selected report:</p>
 
-<textarea class="ckeditor" id="editor1"></textarea>
+<div id="editor1"></div>
+<script>CKEDITOR.replace("editor1");</script>
 </div>
 </body>
 </html>
