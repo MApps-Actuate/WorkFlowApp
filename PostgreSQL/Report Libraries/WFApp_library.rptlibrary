@@ -1,0 +1,1294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
+    <property name="units">in</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Comment Data Source" id="735">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://ihub-win:8433/workflow</property>
+            <property name="odaUser">wfapp</property>
+            <property name="odaIsolationMode">serializable</property>
+            <encrypted-property name="odaPassword" encryptionID="jce">38bf60bc5cb36729</encrypted-property>
+        </oda-data-source>
+        <script-data-source name="ACL" id="702"/>
+    </data-sources>
+    <themes>
+        <theme name="WFColors" id="954">
+            <styles>
+                <style name="SubmitForApproval" id="955">
+                    <property name="backgroundAttachment">fixed</property>
+                    <property name="backgroundColor">#F8E356</property>
+                    <property name="fontFamily">"Lato"</property>
+                    <property name="color">#969696</property>
+                    <property name="borderBottomColor">#969696</property>
+                    <property name="borderLeftColor">#969696</property>
+                    <property name="borderRightColor">#969696</property>
+                    <property name="borderTopColor">#969696</property>
+                </style>
+                <style name="Approve" id="957">
+                    <property name="backgroundColor">#55CC7D</property>
+                    <property name="fontFamily">"Lato"</property>
+                    <property name="color">#E1E3E4</property>
+                    <property name="borderBottomColor">#969696</property>
+                    <property name="borderLeftColor">#969696</property>
+                    <property name="borderRightColor">#969696</property>
+                    <property name="borderTopColor">#969696</property>
+                </style>
+                <style name="Reject" id="958">
+                    <property name="backgroundColor">#F59D4C</property>
+                    <property name="fontFamily">"Lato"</property>
+                    <property name="color">#E1E3E4</property>
+                    <property name="borderBottomColor">#969696</property>
+                    <property name="borderLeftColor">#969696</property>
+                    <property name="borderRightColor">#969696</property>
+                    <property name="borderTopColor">#969696</property>
+                </style>
+                <style name="Comment" id="959">
+                    <property name="backgroundColor">#FFFFFF</property>
+                    <property name="fontFamily">"Lato"</property>
+                    <property name="color">#7F7F7F</property>
+                    <property name="borderBottomColor">#969696</property>
+                    <property name="borderLeftColor">#969696</property>
+                    <property name="borderRightColor">#969696</property>
+                    <property name="borderTopColor">#969696</property>
+                </style>
+                <style name="SubmittedForReview" id="960">
+                    <property name="backgroundColor">#6D65FF</property>
+                    <property name="fontFamily">"Lato"</property>
+                    <property name="color">#E1E3E4</property>
+                    <property name="borderBottomColor">#969696</property>
+                    <property name="borderLeftColor">#969696</property>
+                    <property name="borderRightColor">#969696</property>
+                    <property name="borderTopColor">#969696</property>
+                </style>
+            </styles>
+        </theme>
+        <report-item-theme type="Table" name="Modern Table" id="962">
+            <styles>
+                <style name="table" id="963">
+                    <property name="fontFamily">"Tahoma"</property>
+                    <property name="fontSize">8pt</property>
+                    <property name="color">#666666</property>
+                    <property name="borderBottomColor">#DADADA</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#DADADA</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#DADADA</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#DADADA</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">1px</property>
+                </style>
+                <style name="table-detail-cell" id="964">
+                    <property name="borderBottomColor">#DADADA</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#DADADA</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#DADADA</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#DADADA</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">1px</property>
+                </style>
+                <style name="table-footer-cell" id="965">
+                    <property name="backgroundColor">#EDEEF3</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="color">#666666</property>
+                    <property name="borderBottomColor">#DADADA</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#DADADA</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#DADADA</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#DADADA</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">1px</property>
+                </style>
+                <style name="table-group-footer-cell" id="966">
+                    <property name="borderBottomColor">#DADADA</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#DADADA</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#DADADA</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#DADADA</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">1px</property>
+                </style>
+                <style name="table-group-header-cell" id="967">
+                    <property name="borderBottomColor">#DADADA</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#DADADA</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#DADADA</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#DADADA</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">1px</property>
+                </style>
+                <style name="table-header-cell" id="968">
+                    <property name="backgroundColor">#EDEEF3</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="color">#666666</property>
+                    <property name="borderBottomColor">#DADADA</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#DADADA</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#DADADA</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#DADADA</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">1px</property>
+                </style>
+            </styles>
+        </report-item-theme>
+        <report-item-theme type="Chart" name="WFChart" id="945">
+            <xml-property name="customValues"><![CDATA[<type>1</type><ActuateChart version="2.6.1">
+ <ChartWithAxes version="2.6.1" type="Bar Chart" subType="Side-by-side" unitSpacing="15.0">
+  <block>
+   <children _type="TitleBlock" anchor="7">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <label>
+     <caption>
+      <font name="Tahoma" size="14.0" bold="false"/>
+      <color _body=",255,85,85,85"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+   </children>
+   <children _type="Plot">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+   </children>
+   <children _type="Legend" itemType="0" showValue="false">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+    <text>
+     <font name="Tahoma" size="10.0"/>
+     <color _body=",255,85,85,85"/>
+    </text>
+    <separator>
+     <color _nil="1"/>
+    </separator>
+    <title>
+     <caption>
+      <font name="Tahoma" size="10.0"/>
+      <color _body=",255,85,85,85"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+   </children>
+   <outline>
+    <color _nil="1"/>
+   </outline>
+  </block>
+  <extendedProperties name="enable.area.alt" value="false"/>
+  <extendedProperties name="enable.drill.category" value="true"/>
+  <extendedProperties name="enable.drill.series" value="true"/>
+  <extendedProperties name="theme.withoutaxes" value=""/>
+  <extendedProperties name="jschart.animation" value="true"/>
+  <extendedProperties name="jschart.client.script" value="beforeGeneration: function(options)&amp;#13;&amp;#10;{&amp;#13;&amp;#10;    options.colors = [&amp;#039;#6D65FF&amp;#039;,&amp;#039;#F8E356&amp;#039;,&amp;#039;#55CC7D&amp;#039;,&amp;#039;#F59D4C&amp;#039;];&amp;#13;&amp;#10;    var pointFormat = &amp;#039;{series.name}: {point.y}&amp;#039;;&amp;#13;&amp;#10;    if(options.series &amp;amp;&amp;amp; options.series[0] &amp;amp;&amp;amp; options.series[0].type===&amp;#039;pie&amp;#039;){&amp;#13;&amp;#10;        pointFormat = &amp;#039;{point.y} ({point.percentage:.2f}%)&amp;#039;;&amp;#13;&amp;#10;    }&amp;#13;&amp;#10;    options.tooltip={&amp;#13;&amp;#10;        animation:false,&amp;#13;&amp;#10;        backgroundColor: &amp;quot;#fff&amp;quot;,&amp;#13;&amp;#10;        borderRadius: 0,&amp;#13;&amp;#10;        borderColor: &amp;quot;#e1e1e1&amp;quot;,&amp;#13;&amp;#10;        borderWidth: 1,&amp;#13;&amp;#10;        style: {&amp;#13;&amp;#10;            color:&amp;quot;#363636&amp;quot;,&amp;#13;&amp;#10;            fontSize: &amp;quot;16px&amp;quot;,&amp;#13;&amp;#10;            fontWeight: 400,&amp;#13;&amp;#10;            padding: &amp;quot;12px&amp;quot;&amp;#13;&amp;#10;        },&amp;#13;&amp;#10;        useHTML: true,&amp;#13;&amp;#10;        headerFormat: &amp;#039;&amp;lt;div style=&amp;quot; color:#363636;font-size: 16px;font-weight: 400;&amp;quot;&amp;gt;{point.key}&amp;lt;/div&amp;gt;&amp;#039;,&amp;#13;&amp;#10;        pointFormat: &amp;#039;&amp;lt;div style=&amp;quot; font-size: 12px;font-weight: 600;margin-top: 4px;&amp;quot;&amp;gt;&amp;#039;+pointFormat+&amp;#039;&amp;lt;/div&amp;gt;&amp;#039;&amp;#13;&amp;#10;    }&amp;#13;&amp;#10;}"/>
+  <emptyMessage>
+   <caption value="This chart contains no data."/>
+   <background _body=",64,127,127,127"/>
+   <outline>
+    <color _body=",128,127,127,127"/>
+   </outline>
+  </emptyMessage>
+  <axes>
+   <title>
+    <caption>
+     <font name="Tahoma"/>
+     <color _body=",255,85,85,85"/>
+    </caption>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </title>
+   <associatedAxes primaryAxis="true">
+    <title>
+     <caption>
+      <font name="Tahoma"/>
+      <color _body=",255,85,85,85"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition=""/>
+     <seriesPalette>
+      <entries _body=",255,158,204,76"/>
+      <entries _body=",255,229,107,46"/>
+      <entries _body=",255,102,176,209"/>
+      <entries _body=",255,244,215,96"/>
+      <entries _body=",255,201,17,47"/>
+      <entries _body=",255,46,152,140"/>
+      <entries _body=",255,244,172,69"/>
+      <entries _body=",255,53,120,173"/>
+      <entries _body=",255,242,150,130"/>
+      <entries _body=",255,44,142,60"/>
+     </seriesPalette>
+     <series _type="BarSeries" seriesIdentifier="" riser="0">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataDefinition definition=""/>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+      <riserOutline _body=",0,255,255,255"/>
+     </series>
+     <series _type="LineSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+      <markers visible="false">
+       <outline/>
+      </markers>
+      <lineAttributes thickness="4">
+       <color _nil="1"/>
+      </lineAttributes>
+      <shadowColor _body=",0,255,255,255"/>
+     </series>
+     <series _type="AreaSeries" seriesIdentifier="" stacked="false" curve="false">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+      <markers visible="false">
+       <outline/>
+      </markers>
+      <lineAttributes visible="false">
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="PieSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font name="Tahoma" size="10.0"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="0"/>
+      </dataPoint>
+      <title>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </title>
+      <leaderLineAttributes visible="true">
+       <color _body=",255,85,85,85"/>
+      </leaderLineAttributes>
+      <sliceOutline _body=",255,255,255,255"/>
+     </series>
+     <series _type="DialSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <dial>
+       <lineAttributes>
+        <color _nil="1"/>
+       </lineAttributes>
+       <majorGrid>
+        <lineAttributes>
+         <color _nil="1"/>
+        </lineAttributes>
+        <tickAttributes>
+         <color _nil="1"/>
+        </tickAttributes>
+       </majorGrid>
+       <minorGrid>
+        <lineAttributes>
+         <color _nil="1"/>
+        </lineAttributes>
+        <tickAttributes>
+         <color _nil="1"/>
+        </tickAttributes>
+       </minorGrid>
+       <label>
+        <caption>
+         <font name="Tahoma"/>
+         <color _body=",255,85,85,85"/>
+        </caption>
+        <background _nil="1"/>
+        <outline>
+         <color _nil="1"/>
+        </outline>
+       </label>
+      </dial>
+      <needle>
+       <lineAttributes>
+        <color _nil="1"/>
+       </lineAttributes>
+      </needle>
+     </series>
+     <series _type="ScatterSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+      <markers type="3" size="3">
+       <outline visible="false"/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="StockSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+     </series>
+     <series _type="BubbleSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+      <accLineAttributes>
+       <color _nil="1"/>
+      </accLineAttributes>
+     </series>
+     <series _type="DifferenceSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+      <negativeMarkers>
+       <outline/>
+      </negativeMarkers>
+      <negativeLineAttributes>
+       <color _nil="1"/>
+      </negativeLineAttributes>
+     </series>
+     <series _type="GanttSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+      <connectionLine>
+       <color _nil="1"/>
+      </connectionLine>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+      <decorationLabel>
+       <caption>
+        <font name="Tahoma"/>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </decorationLabel>
+     </series>
+     <series _type="RadarSeries" seriesIdentifier="" paletteLineColor="true">
+      <label>
+       <caption>
+        <font name="Tahoma">
+         <alignment/>
+        </font>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <outline/>
+       <insets/>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <marker type="3" size="3" visible="true">
+       <outline/>
+      </marker>
+      <lineAttributes/>
+      <webLineAttributes>
+       <color _body=",255,85,85,85"/>
+      </webLineAttributes>
+      <webLabel>
+       <caption>
+        <font name="Tahoma" size="10.0">
+         <alignment/>
+        </font>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <outline/>
+       <insets/>
+      </webLabel>
+      <catLabel>
+       <caption>
+        <font name="Tahoma">
+         <alignment/>
+        </font>
+        <color _body=",255,85,85,85"/>
+       </caption>
+       <outline/>
+       <insets/>
+      </catLabel>
+     </series>
+    </seriesDefinitions>
+    <lineAttributes>
+     <color _body=",255,85,85,85"/>
+    </lineAttributes>
+    <label>
+     <caption>
+      <font name="Tahoma" size="10.0"/>
+      <color _body=",255,85,85,85"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes visible="false">
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes visible="false">
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <origin>
+     <value _nil="1"/>
+    </origin>
+   </associatedAxes>
+   <ancillaryAxes>
+    <title>
+     <caption>
+      <font name="Tahoma"/>
+      <color _body=",255,85,85,85"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition=""/>
+     <series seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataPoint separator=", ">
+       <components type="1"/>
+      </dataPoint>
+      <curveFitting _nil="1"/>
+     </series>
+    </seriesDefinitions>
+    <lineAttributes>
+     <color _body=",255,85,85,85"/>
+    </lineAttributes>
+    <label>
+     <caption>
+      <font name="Tahoma" size="10.0"/>
+      <color _body=",255,85,85,85"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <origin>
+     <value _type="NumberDataElement" value="0.0"/>
+    </origin>
+   </ancillaryAxes>
+   <seriesDefinitions>
+    <query definition=""/>
+    <seriesPalette>
+     <entries _body=",255,158,204,76"/>
+     <entries _body=",255,229,107,46"/>
+     <entries _body=",255,102,176,209"/>
+     <entries _body=",255,244,215,96"/>
+     <entries _body=",255,201,17,47"/>
+     <entries _body=",255,46,152,140"/>
+     <entries _body=",255,244,172,69"/>
+     <entries _body=",255,53,120,173"/>
+     <entries _body=",255,242,150,130"/>
+     <entries _body=",255,44,142,60"/>
+    </seriesPalette>
+    <series seriesIdentifier="">
+     <label>
+      <background _nil="1"/>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+     </label>
+     <dataDefinition definition=""/>
+     <dataPoint separator=", ">
+      <components type="1"/>
+     </dataPoint>
+     <curveFitting _nil="1"/>
+    </series>
+   </seriesDefinitions>
+   <lineAttributes>
+    <color _body=",255,85,85,85"/>
+   </lineAttributes>
+   <label>
+    <caption>
+     <font name="Tahoma" size="10.0"/>
+     <color _body=",255,85,85,85"/>
+    </caption>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </label>
+   <majorGrid>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes visible="false">
+     <color _nil="1"/>
+    </tickAttributes>
+   </majorGrid>
+   <minorGrid>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes visible="false">
+     <color _nil="1"/>
+    </tickAttributes>
+   </minorGrid>
+   <origin>
+    <value _nil="1"/>
+   </origin>
+  </axes>
+  <rotation>
+   <angles/>
+  </rotation>
+ </ChartWithAxes>
+</ActuateChart>]]></xml-property>
+        </report-item-theme>
+        <report-item-theme type="Chart" name="Progress Chart" id="840">
+            <xml-property name="customValues"><![CDATA[<type>1</type><ActuateChart version="2.6.1">
+ <ChartWithAxes version="2.6.1" type="Line Chart" subType="Overlay" script="&amp;#10;/**&amp;#10; * Called before drawing each datapoint graphical representation or marker.&amp;#10; * &amp;#10; * @param dph&amp;#10; *            DataPointHints&amp;#10; * @param fill&amp;#10; *            Fill&amp;#10; * @param icsc&amp;#10; *            IChartScriptContext&amp;#10; */&amp;#10;&amp;#10;function beforeDrawDataPoint( dph, fill, icsc )&amp;#10;{&amp;#10;&amp;#10; &amp;#10; var cat = dph.getSeriesDisplayValue(); &amp;#10; if (cat == &amp;quot;Submitted for Review&amp;quot;)&amp;#10;   fill.set(0,0,128); //Blue&amp;#10;&amp;#10; else if(cat == &amp;quot;To Be Approved&amp;quot;)&amp;#10;   fill.set(255,204,0); //Yellow&amp;#10;&amp;#10; else if(cat == &amp;quot;Rejected&amp;quot;)&amp;#10;   fill.set(255,0,0); //Red&amp;#10;&amp;#10; else if(cat == &amp;quot;Approved&amp;quot;)&amp;#10;   fill.set(0,128,0); //Green&amp;#10;&amp;#10; else if(cat == &amp;quot;Comment&amp;quot;)&amp;#10;   fill.set(255,255,255); //White&amp;#10;&amp;#10;&amp;#10;}&amp;#10;&amp;#10;&amp;#10;&amp;#10;/**&amp;#10; * Called before generation of chart model to GeneratedChartState.&amp;#10; * &amp;#10; * @param chart&amp;#10; *            Chart&amp;#10; * @param icsc&amp;#10; *            IChartScriptContext&amp;#10; */&amp;#10;&amp;#10;function beforeGeneration( chart, icsc )&amp;#10;{&amp;#10; &amp;#10; xAxis = chart.getBaseAxes()[0];&amp;#10; xAxis.getScale().setMax(Packages.org.eclipse.birt.chart.model.data.impl.NumberDataElementImpl.create(nmax));&amp;#10;}&amp;#10;&amp;#10;/**&amp;#10; * Called after populating the series dataset.&amp;#10; * &amp;#10; * @param series&amp;#10; *            Series&amp;#10; * @param dataSet&amp;#10; *            DataSet&amp;#10; * @param icsc&amp;#10; *            IChartScriptContext&amp;#10; */&amp;#10;&amp;#10;function afterDataSetFilled( series, dataSet, icsc )&amp;#10;{&amp;#10;&amp;#10;var list = series.dataSet.getValues();&amp;#10;nmax = list.length;&amp;#10;&amp;#10;}&amp;#10;" reverseCategory="false">
+  <block>
+   <children _type="TitleBlock" anchor="4" visible="false">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <cursor type="0"/>
+    <label>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+   </children>
+   <children _type="Plot" stretch="2" horizontalSpacing="0" verticalSpacing="0">
+    <insets _body="0.0,2.0,0.0,0.0"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+     <insets _body="0.0,0.0,0.0,0.0"/>
+    </clientArea>
+   </children>
+   <children _type="Legend" visible="false" itemType="1">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <cursor type="0"/>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+    <separator>
+     <color _nil="1"/>
+    </separator>
+    <title>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+   </children>
+   <bounds _body="0.0,0.0,572.25,286.125"/>
+   <insets _body="0.0,5.0,0.0,5.0"/>
+   <outline visible="false">
+    <color _nil="1"/>
+   </outline>
+   <cursor type="0"/>
+  </block>
+  <extendedProperties name="enable.area.alt" value="false"/>
+  <extendedProperties name="enable.drill.category" value="true"/>
+  <extendedProperties name="enable.drill.series" value="true"/>
+  <extendedProperties name="jschart.client.script" value="/**&amp;#13;&amp;#10; * Called before series instance is rendered.&amp;#13;&amp;#10; *&amp;#13;&amp;#10; * @param series&amp;#13;&amp;#10; *            series instance&amp;#13;&amp;#10; * @param  seriesOptions&amp;#13;&amp;#10; *             series options&amp;#13;&amp;#10; * @param  chart&amp;#13;&amp;#10; *             chart instance&amp;#13;&amp;#10; * @param  seriesIndex&amp;#13;&amp;#10; *             series index&amp;#13;&amp;#10; */&amp;#13;&amp;#10;beforeDrawSeries: function(series, seriesOptions, chart, seriesIndex)&amp;#13;&amp;#10;{&amp;#13;&amp;#10;    if (seriesOptions.name == &amp;quot;Submitted for Review&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#6D65FF&amp;quot;; //Blue&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;To Be Approved&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#F8E356&amp;quot;; //Yellow&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;Rejected&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#F59D4C&amp;quot;; //Red&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;Approved&amp;quot;)&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#55CC7D&amp;quot;; //Green&amp;#13;&amp;#10;            &amp;#13;&amp;#10;    else if (seriesOptions.name == &amp;quot;Comment&amp;quot;) {&amp;#13;&amp;#10;            seriesOptions.marker.fillColor = &amp;quot;#FFFFFF&amp;quot;; //White&amp;#13;&amp;#10;            seriesOptions.marker.lineColor = &amp;quot;#000000&amp;quot;;&amp;#13;&amp;#10;            seriesOptions.marker.lineWidth = .5;&amp;#13;&amp;#10;    }&amp;#13;&amp;#10;&amp;#13;&amp;#10;},&amp;#13;&amp;#10;&amp;#13;&amp;#10;/**&amp;#13;&amp;#10; * Called before chart instance is rendered.&amp;#13;&amp;#10; *&amp;#13;&amp;#10; * @param options&amp;#13;&amp;#10; *            chart options&amp;#13;&amp;#10; * @param  chart&amp;#13;&amp;#10; *             chart instance&amp;#13;&amp;#10; */&amp;#13;&amp;#10;beforeRendering: function(options, chart)&amp;#13;&amp;#10;{&amp;#13;&amp;#10;    options.chart.spacingTop = -20;&amp;#13;&amp;#10;    options.chart.spacingLeft = 5;&amp;#13;&amp;#10;    options.chart.spacingRight = 5;&amp;#13;&amp;#10;    options.chart.spacingBottom = 0;&amp;#13;&amp;#10;&amp;#13;&amp;#10;},&amp;#13;&amp;#10;&amp;#13;&amp;#10;&amp;#13;&amp;#10;&amp;#13;&amp;#10;/**&amp;#13;&amp;#10; * Called after chart instance is rendered.&amp;#13;&amp;#10; *&amp;#13;&amp;#10; * @param chart&amp;#13;&amp;#10; *            chart instance&amp;#13;&amp;#10; */&amp;#13;&amp;#10;afterRendering: function(chart)&amp;#13;&amp;#10;{&amp;#13;&amp;#10;    chart.getCore().yAxis[0].addPlotLine({&amp;#13;&amp;#10;        value:  1,&amp;#13;&amp;#10;        color: &amp;#039;black&amp;#039;,&amp;#13;&amp;#10;        width: 1,&amp;#13;&amp;#10;        id: &amp;#039;path&amp;#039;,&amp;#13;&amp;#10;        zIndex: 0&amp;#13;&amp;#10;    });&amp;#13;&amp;#10;},"/>
+  <extendedProperties name="jschart.series.shadow" value="false"/>
+  <extendedProperties name="jschart.animation" value="false"/>
+  <extendedProperties name="jschart.scroll" value="false"/>
+  <extendedProperties name="theme.withoutaxes" value=""/>
+  <interactivity enable="false"/>
+  <emptyMessage visible="false">
+   <caption value="This chart contains no data."/>
+   <background _body=",64,127,127,127"/>
+   <outline>
+    <color _body=",128,127,127,127"/>
+   </outline>
+  </emptyMessage>
+  <axes type="0" categoryAxis="false">
+   <title visible="false">
+    <caption value=""/>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </title>
+   <associatedAxes primaryAxis="true" percent="false">
+    <title visible="false">
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition="">
+      <grouping/>
+     </query>
+     <seriesPalette>
+      <entries _body=",255,80,166,218"/>
+      <entries _body=",255,242,88,106"/>
+      <entries _body=",255,232,172,57"/>
+      <entries _body=",255,255,102,0"/>
+      <entries _body=",255,64,128,128"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,170,85,85"/>
+      <entries _body=",255,128,128,0"/>
+      <entries _body=",255,192,192,192"/>
+      <entries _body=",255,255,255,128"/>
+      <entries _body=",255,128,192,128"/>
+      <entries _body=",255,7,146,94"/>
+      <entries _body=",255,0,128,255"/>
+      <entries _body=",255,255,128,192"/>
+      <entries _body=",255,0,255,255"/>
+      <entries _body=",255,255,128,128"/>
+      <entries _body=",255,0,128,192"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,255,0,255"/>
+      <entries _body=",255,128,64,64"/>
+      <entries _body=",255,255,128,64"/>
+      <entries _body=",255,80,240,120"/>
+      <entries _body=",255,0,64,128"/>
+      <entries _body=",255,128,0,64"/>
+      <entries _body=",255,255,0,128"/>
+      <entries _body=",255,128,128,64"/>
+      <entries _body=",255,128,128,128"/>
+      <entries _body=",255,255,128,255"/>
+      <entries _body=",255,0,64,0"/>
+      <entries _body=",255,0,0,0"/>
+      <entries _body=",255,255,255,255"/>
+      <entries _body=",255,255,128,0"/>
+     </seriesPalette>
+     <series _type="LineSeries" seriesIdentifier="Submitted for Review" stacked="false" translucent="false">
+      <label visible="false">
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataDefinition definition="if (row[&amp;quot;Status&amp;quot;]==&amp;quot;Submitted for Review&amp;quot;) &amp;#13;&amp;#10; 1&amp;#13;&amp;#10;else&amp;#13;&amp;#10; null">
+       <grouping/>
+      </dataDefinition>
+      <curveFitting _nil="1"/>
+      <markers visible="true">
+       <outline/>
+      </markers>
+      <lineAttributes visible="false">
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="BarSeries" seriesIdentifier="" riser="0">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+     </series>
+     <series _type="AreaSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="PieSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <title>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </title>
+     </series>
+     <series _type="DialSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dial>
+       <lineAttributes>
+        <color _nil="1"/>
+       </lineAttributes>
+       <majorGrid>
+        <lineAttributes>
+         <color _nil="1"/>
+        </lineAttributes>
+        <tickAttributes>
+         <color _nil="1"/>
+        </tickAttributes>
+       </majorGrid>
+       <minorGrid>
+        <lineAttributes>
+         <color _nil="1"/>
+        </lineAttributes>
+        <tickAttributes>
+         <color _nil="1"/>
+        </tickAttributes>
+       </minorGrid>
+       <label>
+        <background _nil="1"/>
+        <outline>
+         <color _nil="1"/>
+        </outline>
+       </label>
+      </dial>
+      <needle>
+       <lineAttributes>
+        <color _nil="1"/>
+       </lineAttributes>
+      </needle>
+     </series>
+     <series _type="ScatterSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+     </series>
+     <series _type="StockSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+     </series>
+     <series _type="BubbleSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+      <accLineAttributes>
+       <color _nil="1"/>
+      </accLineAttributes>
+     </series>
+     <series _type="DifferenceSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <markers>
+       <outline/>
+      </markers>
+      <lineAttributes>
+       <color _nil="1"/>
+      </lineAttributes>
+      <negativeMarkers>
+       <outline/>
+      </negativeMarkers>
+      <negativeLineAttributes>
+       <color _nil="1"/>
+      </negativeLineAttributes>
+     </series>
+     <series _type="GanttSeries" seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+      <connectionLine>
+       <color _nil="1"/>
+      </connectionLine>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+      <decorationLabel>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </decorationLabel>
+     </series>
+     <series _type="RadarSeries" seriesIdentifier="">
+      <label>
+       <caption>
+        <font>
+         <alignment/>
+        </font>
+       </caption>
+       <outline/>
+       <insets/>
+      </label>
+      <dataPoint/>
+      <marker>
+       <outline/>
+      </marker>
+      <lineAttributes/>
+      <webLineAttributes/>
+      <webLabel>
+       <caption>
+        <font>
+         <alignment/>
+        </font>
+       </caption>
+       <outline/>
+       <insets/>
+      </webLabel>
+      <catLabel>
+       <caption>
+        <font>
+         <alignment/>
+        </font>
+       </caption>
+       <outline/>
+       <insets/>
+      </catLabel>
+     </series>
+     <grouping _nil="1"/>
+    </seriesDefinitions>
+    <lineAttributes visible="false">
+     <color _nil="1"/>
+    </lineAttributes>
+    <label visible="false">
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes visible="false">
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes visible="false">
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes visible="false">
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes visible="false">
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <scale autoExpand="true">
+     <min _type="NumberDataElement" value="0.0"/>
+    </scale>
+    <origin type="0">
+     <value _nil="1"/>
+    </origin>
+    <cursor type="0"/>
+   </associatedAxes>
+   <ancillaryAxes>
+    <title>
+     <caption value="Z-Axis Title"/>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition=""/>
+     <seriesPalette>
+      <entries _body=",255,80,166,218"/>
+      <entries _body=",255,242,88,106"/>
+      <entries _body=",255,232,172,57"/>
+      <entries _body=",255,255,102,0"/>
+      <entries _body=",255,64,128,128"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,170,85,85"/>
+      <entries _body=",255,128,128,0"/>
+      <entries _body=",255,192,192,192"/>
+      <entries _body=",255,255,255,128"/>
+      <entries _body=",255,128,192,128"/>
+      <entries _body=",255,7,146,94"/>
+      <entries _body=",255,0,128,255"/>
+      <entries _body=",255,255,128,192"/>
+      <entries _body=",255,0,255,255"/>
+      <entries _body=",255,255,128,128"/>
+      <entries _body=",255,0,128,192"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,255,0,255"/>
+      <entries _body=",255,128,64,64"/>
+      <entries _body=",255,255,128,64"/>
+      <entries _body=",255,80,240,120"/>
+      <entries _body=",255,0,64,128"/>
+      <entries _body=",255,128,0,64"/>
+      <entries _body=",255,255,0,128"/>
+      <entries _body=",255,128,128,64"/>
+      <entries _body=",255,128,128,128"/>
+      <entries _body=",255,255,128,255"/>
+      <entries _body=",255,0,64,0"/>
+      <entries _body=",255,0,0,0"/>
+      <entries _body=",255,255,255,255"/>
+      <entries _body=",255,255,128,0"/>
+     </seriesPalette>
+     <series seriesIdentifier="">
+      <label>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <curveFitting _nil="1"/>
+     </series>
+    </seriesDefinitions>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <label>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <origin>
+     <value _type="NumberDataElement" value="0.0"/>
+    </origin>
+   </ancillaryAxes>
+   <seriesDefinitions>
+    <query definition=""/>
+    <seriesPalette>
+     <entries _body=",255,80,166,218"/>
+     <entries _body=",255,242,88,106"/>
+     <entries _body=",255,232,172,57"/>
+     <entries _body=",255,255,102,0"/>
+     <entries _body=",255,64,128,128"/>
+     <entries _body=",255,128,128,192"/>
+     <entries _body=",255,170,85,85"/>
+     <entries _body=",255,128,128,0"/>
+     <entries _body=",255,192,192,192"/>
+     <entries _body=",255,255,255,128"/>
+     <entries _body=",255,128,192,128"/>
+     <entries _body=",255,7,146,94"/>
+     <entries _body=",255,0,128,255"/>
+     <entries _body=",255,255,128,192"/>
+     <entries _body=",255,0,255,255"/>
+     <entries _body=",255,255,128,128"/>
+     <entries _body=",255,0,128,192"/>
+     <entries _body=",255,128,128,192"/>
+     <entries _body=",255,255,0,255"/>
+     <entries _body=",255,128,64,64"/>
+     <entries _body=",255,255,128,64"/>
+     <entries _body=",255,80,240,120"/>
+     <entries _body=",255,0,64,128"/>
+     <entries _body=",255,128,0,64"/>
+     <entries _body=",255,255,0,128"/>
+     <entries _body=",255,128,128,64"/>
+     <entries _body=",255,128,128,128"/>
+     <entries _body=",255,255,128,255"/>
+     <entries _body=",255,0,64,0"/>
+     <entries _body=",255,0,0,0"/>
+     <entries _body=",255,255,255,255"/>
+     <entries _body=",255,255,128,0"/>
+    </seriesPalette>
+    <series seriesIdentifier="">
+     <label>
+      <background _nil="1"/>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+     </label>
+     <dataDefinition definition="row[&amp;quot;rowNum&amp;quot;]"/>
+     <curveFitting _nil="1"/>
+    </series>
+    <grouping _nil="1"/>
+   </seriesDefinitions>
+   <lineAttributes visible="false">
+    <color _nil="1"/>
+   </lineAttributes>
+   <label visible="false">
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </label>
+   <majorGrid>
+    <lineAttributes visible="false">
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes visible="false">
+     <color _nil="1"/>
+    </tickAttributes>
+   </majorGrid>
+   <minorGrid>
+    <lineAttributes visible="false">
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes visible="false">
+     <color _nil="1"/>
+    </tickAttributes>
+   </minorGrid>
+   <scale showOutside="false" autoExpand="true">
+    <min _type="NumberDataElement" value="0.0"/>
+   </scale>
+   <origin type="0">
+    <value _nil="1"/>
+   </origin>
+   <cursor type="0"/>
+  </axes>
+  <rotation>
+   <angles/>
+  </rotation>
+ </ChartWithAxes>
+</ActuateChart>]]></xml-property>
+        </report-item-theme>
+    </themes>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="3"/>
+    </page-setup>
+</library>

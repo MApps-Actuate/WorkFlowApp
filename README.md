@@ -4,33 +4,33 @@ WorkFlowApp
 The WorkFlow application shows how to create a simple web application that does CRUD operations in BIRT iHub.
 
 We require:
-   * an MSSQL or a MySQL database
+   * an MSSQL, MySQL or a PostgreSQL database
    * CKEditor.  You can download the CKEditor at http://www.ckeditor.com (v4.3.2 is last known compatible version) and install it at:
    		 ```<iHub 3.0 URL>/iportal/ 
    		 or
    		 iHub 16 /web/birtservice```
    * SQL Writeback jar files
-   * iHub and BDPro
+   * iHub and Analytics Designer
    		
 
 Installment Steps:
 
 1. The SQL Writeback plugin needs to installed for BIRT Designer Pro and iHub.
 
-	For BDPro, copy both SQL Writeback jars to:
-		```C:\Actuate\BDPro\eclipse\plugins```
+	For Analytics Designer, copy both SQL Writeback jars to:
+		```C:\OpenText\Analytics Designer\Analytics Designer\plugins```
 		
 	For iHub, copy the SQL Writeback jar without "UI" in the name to:
-		```C:\Actuate\BIRTiHubVisualization\modules\BIRTiHub\iHub\MyClasses\eclipse\plugins```
+		```C:\OpenText\InformationHub\modules\BIRTiHub\iHub\MyClasses\eclipse\plugins```
 	
 2. To enable the CKEditor, you need to copy the CKEditor folder of style sheets and javascript files to:
 
-	   C:\Actuate\BIRTiHubVisualization\modules\BIRTiHub\iHub\web\iportal
+	   C:\OpenText\InformationHub\modules\BIRTiHub\iHub\web\birtservice
 	   
     You can obtain the latest version of CKEditor from http://www.ckeditor.com
     We found setting config.enterMode = CKEDITOR.ENTER_BR; in config.js made for a better experience.
     
-    Restart the Actuate iHub service
+    Restart the OpenText iHub service
     
 3a. Create the MSSQL Workflow database:
 	* Create the workflow database and comments table by running the script: SQLServer\createWorkflowDB.sql  
@@ -38,8 +38,11 @@ Installment Steps:
 3b. Create the MySQL Workflow database:
 	* Create the workflow database and comments table by running the script: MySQL\createWorkflowDB.sql  	
 
+3c. Create the PostgreSQL Workflow database:
+	* Create the workflow database and comments table by running the script: PostgreSQL\createWorkflowDB.sql  	
+
 4. Deploy the Workflow Application in iHub:
-	* Publish the WorkflowApp from BD Pro to iHub using the Publish Project option, if available.
+	* Publish the WorkflowApp from Analytics Designer to iHub using the Publish Project option, if available.
 	* Create 2 User Groups in iHub called 'Reviewer' and 'Approver.'
     * You need a minimum of 2 users, assign 1 to the Reviewer group and the other to the Approver group.  Do not assign a user to both groups.  Do not assign an administrator to either group.
 

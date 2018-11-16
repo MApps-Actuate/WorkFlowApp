@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.actuate.istudio.analysis.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.actuate.istudio.analysis.model="http:///com.actuate.istudio.analysis.model.ecore" name="WorkFlowApp">
+  <files xsi:type="com.actuate.istudio.analysis.model:Dashboard" name="Work Flow Queue.dashboard" path="/WorkFlowApp/Dashboards/Work Flow Queue.dashboard"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="WFApp_library.rptlibrary" path="/WorkFlowApp/Report Libraries/WFApp_library.rptlibrary" reports="//@files.3 //@files.4 //@files.5 //@files.6"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:Dashboard" name="WorkFlowAdmin.dashboard" path="/WorkFlowApp/Dashboards/WorkFlowAdmin.dashboard"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="WorkFlowAdmin.rptdesign" path="/WorkFlowApp/Report Designs/WorkFlowAdmin.rptdesign" libraries="//@files.1">
+    <dataSets name="Insert Data Set">
+      <columns name="ID"/>
+      <columns name="cKey"/>
+      <columns name="Content"/>
+      <columns name="cDate"/>
+      <columns name="cUser"/>
+      <columns name="FullReportName"/>
+      <columns name="Status"/>
+      <columns name="shortContent"/>
+    </dataSets>
+    <dataSets name="Steps Data Set">
+      <columns name="ID"/>
+      <columns name="cKey"/>
+      <columns name="Content"/>
+      <columns name="cDate"/>
+      <columns name="cUser"/>
+      <columns name="FullReportName"/>
+      <columns name="Status"/>
+      <columns name="shortContent"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="splashscreen.rptdesign" path="/WorkFlowApp/Report Designs/splashscreen.rptdesign" libraries="//@files.1">
+    <dataSets name="ACL">
+      <columns name="ACL"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="WorkFlowFrame.rptdesign" path="/WorkFlowApp/Report Designs/WorkFlowFrame.rptdesign" libraries="//@files.1">
+    <linkedFromReportsMap key="//@files.6" value="1"/>
+    <dataSets name="ACL">
+      <columns name="ACL"/>
+    </dataSets>
+    <dataSets name="Comment Data Set">
+      <columns name="ID"/>
+      <columns name="cKey"/>
+      <columns name="Content"/>
+      <columns name="cUser"/>
+      <columns name="FullReportName"/>
+      <columns name="Status"/>
+      <columns name="shortContent"/>
+      <columns name="cDate"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="WorkFlowListing.rptdesign" path="/WorkFlowApp/Report Designs/WorkFlowListing.rptdesign" libraries="//@files.1">
+    <linkedToReportsMap key="215" value="//@files.5"/>
+    <dataSets name="WFProgress">
+      <columns name="ID"/>
+      <columns name="cKey"/>
+      <columns name="Content"/>
+      <columns name="cUser"/>
+      <columns name="FullReportName"/>
+      <columns name="Status"/>
+      <columns name="shortContent"/>
+      <columns name="cDate"/>
+      <columns name="sortOrder" expression="var order = 0;&#xD;&#xA;switch (row[&quot;Status&quot;]) {&#xD;&#xA;&#x9;case &quot;Submitted for Review&quot;:&#xD;&#xA;&#x9;&#x9;order = 1;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;case &quot;Rejected&quot;:&#xD;&#xA;&#x9;&#x9;order = 2;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;case &quot;To Be Approved&quot;:&#xD;&#xA;&#x9;&#x9;order = 3;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;case &quot;Approved&quot;:&#xD;&#xA;&#x9;&#x9;order = 4;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;}&#xD;&#xA;order;"/>
+      <columns name="stepDuration" expression="BirtDateTime.diffSecond(row[&quot;cDate&quot;], new Date())"/>
+    </dataSets>
+    <dataSets name="ACL">
+      <columns name="ACL"/>
+    </dataSets>
+    <dataSets name="Comment Data Set">
+      <columns name="ID"/>
+      <columns name="cKey"/>
+      <columns name="Content"/>
+      <columns name="cUser"/>
+      <columns name="FullReportName"/>
+      <columns name="Status"/>
+      <columns name="shortContent"/>
+      <columns name="cDate"/>
+      <columns name="StepDuration" expression="BirtDateTime.diffSecond(row[&quot;cDate&quot;], new Date())"/>
+    </dataSets>
+  </files>
+</com.actuate.istudio.analysis.model:Project>
